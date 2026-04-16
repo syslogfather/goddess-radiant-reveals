@@ -9,7 +9,7 @@ const C = {
   rose: "#d2a484", roseLight: "#e6c5aa", rosePale: "#f0dcc8", roseDark: "#9e7456",
   gold: "#c7a76a", goldLight: "#dece9c", blush: "#cf9e9e", blushPale: "#ecd0d0",
   cream: "#f4ece2", plum: "#8a6c8a", plumLight: "#b496b4",
-  text: "#f4ece2", text2: "#b5a594", text3: "#7a6e62",
+  text: "#f4ece2", text2: "#d4c8b8", text3: "#a0937f",
   shimmer: "linear-gradient(105deg, #d2a484 0%, #c7a76a 35%, #cf9e9e 65%, #d2a484 100%)",
   success: "#7bc9a0", error: "#cf7070",
 };
@@ -74,16 +74,16 @@ function Btn({ children, primary, href = "#", small, full, sx = {} }) {
   const [h, setH] = useState(false);
   return <a href={href} target="_blank" rel="noopener noreferrer" onMouseEnter={() => setH(true)} onMouseLeave={() => setH(false)} style={{
     display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 8,
-    padding: small ? "11px 24px" : "15px 34px", borderRadius: 50, fontSize: small ? 13 : 15, fontWeight: 600,
+    padding: small ? "12px 26px" : "16px 36px", borderRadius: 50, fontSize: small ? 15 : 17, fontWeight: 600,
     fontFamily: "'Jost',sans-serif", textDecoration: "none", cursor: "pointer", letterSpacing: .8,
     transition: "all .35s cubic-bezier(.16,1,.3,1)", width: full ? "100%" : "auto",
     ...(primary ? { background: h ? `linear-gradient(135deg,${C.roseLight},${C.gold})` : `linear-gradient(135deg,${C.rose},${C.roseDark})`, color: C.bg, border: "none", boxShadow: h ? `0 8px 32px ${C.rose}55` : `0 4px 20px ${C.rose}30`, transform: h ? "translateY(-2px)" : "none" }
       : { background: h ? `${C.rose}14` : "transparent", color: C.roseLight, border: `1.5px solid ${h ? C.rose + "55" : C.rose + "28"}`, transform: h ? "translateY(-2px)" : "none" }), ...sx,
   }}>{children}</a>;
 }
-function Label({ children }) { return <div style={{ fontSize: 10.5, fontWeight: 600, letterSpacing: 4.5, textTransform: "uppercase", color: C.rose, marginBottom: 14, fontFamily: "'Jost',sans-serif" }}>{children}</div>; }
+function Label({ children }) { return <div style={{ fontSize: 13, fontWeight: 600, letterSpacing: 4.5, textTransform: "uppercase", color: C.rose, marginBottom: 14, fontFamily: "'Jost',sans-serif" }}>{children}</div>; }
 function Title({ children, size = "clamp(26px,5.5vw,42px)" }) { return <h2 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: size, fontWeight: 500, fontStyle: "italic", color: C.text, margin: "0 0 6px", lineHeight: 1.12 }}>{children}</h2>; }
-function Sub({ children, wide }) { return <p style={{ fontFamily: "'Jost',sans-serif", fontSize: 15, color: C.text2, lineHeight: 1.75, fontWeight: 300, maxWidth: wide ? 520 : 460, margin: "14px auto 0", letterSpacing: .2 }}>{children}</p>; }
+function Sub({ children, wide }) { return <p style={{ fontFamily: "'Jost',sans-serif", fontSize: 19, color: C.text2, lineHeight: 1.75, fontWeight: 300, maxWidth: wide ? 560 : 500, margin: "14px auto 0", letterSpacing: .2 }}>{children}</p>; }
 function Card({ children, style: sx = {} }) { return <div style={{ background: C.card, border: `1px solid ${C.border}`, borderRadius: 22, position: "relative", overflow: "hidden", ...sx }}>{children}</div>; }
 function ShimmerBar() { return <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 2.5, background: C.shimmer, backgroundSize: "200% auto", animation: "shimmer 4.5s linear infinite" }} />; }
 
@@ -133,19 +133,19 @@ function Hero() {
         </div>
       </div>
     </FadeIn>
-    <FadeIn delay={.05}><div style={{ fontSize: 10.5, letterSpacing: 5.5, color: C.text3, fontWeight: 500, textTransform: "uppercase", marginBottom: 28, fontFamily: "'Jost',sans-serif" }}>You deserve something radiant</div></FadeIn>
+    <FadeIn delay={.05}><div style={{ fontSize: 13, letterSpacing: 5.5, color: C.text3, fontWeight: 500, textTransform: "uppercase", marginBottom: 28, fontFamily: "'Jost',sans-serif" }}>You deserve something radiant</div></FadeIn>
     <FadeIn delay={.12}><Flourish w={85} o={.3} style={{ margin: "0 auto 22px" }} /></FadeIn>
     <FadeIn delay={.18}><h1 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: "clamp(44px,11vw,80px)", fontWeight: 400, fontStyle: "italic", color: C.text, margin: "0 0 2px", lineHeight: 1.02, letterSpacing: 1 }}>Goddess</h1></FadeIn>
     <FadeIn delay={.24}><h1 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: "clamp(44px,11vw,80px)", fontWeight: 600, margin: "0 0 2px", lineHeight: 1.02, letterSpacing: 2, background: C.shimmer, backgroundSize: "200% auto", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", animation: "shimmer 6s linear infinite" }}>Radiant</h1></FadeIn>
     <FadeIn delay={.3}><h1 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: "clamp(44px,11vw,80px)", fontWeight: 400, fontStyle: "italic", color: C.text, margin: "0 0 12px", lineHeight: 1.02, letterSpacing: 1 }}>Reveals</h1></FadeIn>
     <FadeIn delay={.36}><Flourish w={85} o={.3} style={{ margin: "0 auto 30px" }} /></FadeIn>
-    <FadeIn delay={.42}><p style={{ fontFamily: "'Jost',sans-serif", fontSize: "clamp(15px,3vw,17px)", color: C.text2, maxWidth: 440, lineHeight: 1.85, fontWeight: 300, letterSpacing: .3 }}>I'm a brand new fizzer on a mission — help me find the first diamond hiding in my starter kit! Pour something bubbly, gather your girls, and watch the fizz reveal your next favorite piece of jewelry live on TikTok.</p></FadeIn>
+    <FadeIn delay={.42}><p style={{ fontFamily: "'Jost',sans-serif", fontSize: "clamp(17px,3.5vw,21px)", color: C.text2, maxWidth: 440, lineHeight: 1.85, fontWeight: 300, letterSpacing: .3 }}>I'm a brand new fizzer on a mission — help me find the first diamond hiding in my starter kit! Pour something bubbly, gather your girls, and watch the fizz reveal your next favorite piece of jewelry live on TikTok.</p></FadeIn>
     <FadeIn delay={.5}><p style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 16, fontStyle: "italic", color: C.rose, marginTop: 16, marginBottom: 32, fontWeight: 400, letterSpacing: .5 }}>Every goddess deserves a little radiance — and every starter kit holds a secret.</p></FadeIn>
     <FadeIn delay={.58}><div style={{ display: "flex", flexWrap: "wrap", gap: 14, justifyContent: "center" }}>
       <Btn primary href={LINKS.shop}>✦ &nbsp;Treat Yourself</Btn>
       <Btn href="#live">Join a Reveal Party</Btn>
     </div></FadeIn>
-    <FadeIn delay={.7}><div style={{ marginTop: 48, display: "flex", gap: 24, flexWrap: "wrap", justifyContent: "center", fontFamily: "'Jost',sans-serif", fontSize: 12.5, fontWeight: 400, color: C.text3, letterSpacing: .5 }}>
+    <FadeIn delay={.7}><div style={{ marginTop: 48, display: "flex", gap: 24, flexWrap: "wrap", justifyContent: "center", fontFamily: "'Jost',sans-serif", fontSize: 15, fontWeight: 400, color: C.text3, letterSpacing: .5 }}>
       {[["💎", "Be My First Diamond!"], ["🦄", "Help Me Find a Unicorn"], ["⭐", "Be Part of the Journey"]].map(([i, t]) => <span key={t} style={{ display: "flex", alignItems: "center", gap: 6 }}><span style={{ fontSize: 14 }}>{i}</span>{t}</span>)}
     </div></FadeIn>
     <div style={{ position: "absolute", bottom: 28, left: "50%", transform: "translateX(-50%)", animation: "scrollPulse 2.8s ease-in-out infinite", fontFamily: "'Jost',sans-serif", fontSize: 10, letterSpacing: 4, textTransform: "uppercase", color: C.text3 }}>scroll</div>
@@ -162,7 +162,7 @@ function Manifesto() {
       <FadeIn>
         <Label>The Goddess Glow</Label>
         <Title>You Deserve This Moment</Title>
-        <div style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: "clamp(17px,3.5vw,21px)", fontStyle: "italic", fontWeight: 300, color: C.text2, lineHeight: 2, marginTop: 24, letterSpacing: .3 }}>
+        <div style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: "clamp(20px,4vw,25px)", fontStyle: "italic", fontWeight: 300, color: C.text2, lineHeight: 2, marginTop: 24, letterSpacing: .3 }}>
           Light a candle. Put on your favorite playlist.
           <br />Text your girls: <em style={{ color: C.roseLight }}>"reveal party tonight."</em>
           <br />I'm a brand new fizzer chasing my first diamond —
@@ -193,9 +193,9 @@ function Shop() {
           <ShimmerBar />
           <div style={{ fontSize: 48, marginBottom: 16 }}>🛍️</div>
           <div style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: "clamp(22px,5vw,30px)", fontWeight: 600, fontStyle: "italic", color: C.text, marginBottom: 10 }}>Original Bombs, Birthdays, Specials & More</div>
-          <p style={{ fontFamily: "'Jost',sans-serif", fontSize: 14, color: C.text2, lineHeight: 1.75, fontWeight: 300, maxWidth: 400, margin: "0 auto 24px" }}>Starting at $19.95 — every bomb fizzes into a beautiful piece of handcrafted jewelry. Rings, necklaces, earrings, and surprises you won't expect.</p>
+          <p style={{ fontFamily: "'Jost',sans-serif", fontSize: 18, color: C.text2, lineHeight: 1.75, fontWeight: 300, maxWidth: 440, margin: "0 auto 24px" }}>Starting at $19.95 — every bomb fizzes into a beautiful piece of handcrafted jewelry. Rings, necklaces, earrings, and surprises you won't expect.</p>
           <Btn primary href={LINKS.shop}>✦ &nbsp;Browse My Store</Btn>
-          <p style={{ fontFamily: "'Jost',sans-serif", fontSize: 12, color: C.text3, marginTop: 20, fontWeight: 300, letterSpacing: .5, lineHeight: 1.6 }}>Ships in 3–5 days · 30-day quality guarantee · Handcrafted by Bomb Party, LLC</p>
+          <p style={{ fontFamily: "'Jost',sans-serif", fontSize: 14, color: C.text3, marginTop: 20, fontWeight: 300, letterSpacing: .5, lineHeight: 1.6 }}>Ships in 3–5 days · 30-day quality guarantee · Handcrafted by Bomb Party, LLC</p>
         </Card>
       </FadeIn>
     </div>
@@ -219,13 +219,13 @@ function DiamondHunt() {
           <ShimmerBar />
           <div style={{ fontSize: 56, marginBottom: 16, animation: "driftUp 3s ease-in-out infinite, diamondGlow 4s ease-in-out infinite" }}>💎</div>
           <div style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: "clamp(22px,5vw,32px)", fontWeight: 600, fontStyle: "italic", color: C.text, marginBottom: 8, lineHeight: 1.2 }}>The Starter Kit Diamond Quest</div>
-          <p style={{ fontFamily: "'Jost',sans-serif", fontSize: 14, color: C.text2, lineHeight: 1.75, fontWeight: 300, maxWidth: 400, margin: "0 auto 20px" }}>Every Bomb Party starter kit contains a hidden diamond piece. As a brand new goddess rep, I'm fizzing through my very first kit live on TikTok — and every order you place adds to the reveal lineup. The more we fizz together, the closer we get.</p>
+          <p style={{ fontFamily: "'Jost',sans-serif", fontSize: 18, color: C.text2, lineHeight: 1.75, fontWeight: 300, maxWidth: 440, margin: "0 auto 20px" }}>Every Bomb Party starter kit contains a hidden diamond piece. As a brand new goddess rep, I'm fizzing through my very first kit live on TikTok — and every order you place adds to the reveal lineup. The more we fizz together, the closer we get.</p>
           <div style={{ display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap", marginBottom: 24 }}>
             {[["✦", "New Fizzer", "Just getting started!"], ["💎", "Diamond Status", "Hiding in the kit"], ["👑", "Goddess Goal", "Reveal it together"]].map(([icon, title, sub]) => (
               <div key={title} style={{ flex: "1 1 120px", maxWidth: 150, padding: "16px 12px", background: `${C.rose}08`, borderRadius: 14, border: `1px solid ${C.rose}10` }}>
                 <div style={{ fontSize: 22, marginBottom: 6 }}>{icon}</div>
-                <div style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 600, fontStyle: "italic", fontSize: 14, color: C.roseLight, marginBottom: 2 }}>{title}</div>
-                <div style={{ fontFamily: "'Jost',sans-serif", fontSize: 11, color: C.text3, fontWeight: 300 }}>{sub}</div>
+                <div style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 600, fontStyle: "italic", fontSize: 16, color: C.roseLight, marginBottom: 2 }}>{title}</div>
+                <div style={{ fontFamily: "'Jost',sans-serif", fontSize: 13, color: C.text3, fontWeight: 300 }}>{sub}</div>
               </div>))}
           </div>
           <p style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 16, fontStyle: "italic", color: C.rose, marginBottom: 24, fontWeight: 400, letterSpacing: .3 }}>Will your bomb be the one? There's only one way to find out, goddess.</p>
@@ -237,7 +237,7 @@ function DiamondHunt() {
           <span style={{ fontSize: 24 }}>🔔</span>
           <div style={{ textAlign: "left", flex: "1 1 200px" }}>
             <div style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 600, fontStyle: "italic", fontSize: 16, color: C.text, marginBottom: 2 }}>Don't miss the diamond reveal</div>
-            <div style={{ fontFamily: "'Jost',sans-serif", fontSize: 12, color: C.text3, fontWeight: 300 }}>Get a text the moment we find it — be part of goddess history!</div>
+            <div style={{ fontFamily: "'Jost',sans-serif", fontSize: 15, color: C.text3, fontWeight: 300 }}>Get a text the moment we find it — be part of goddess history!</div>
           </div>
           <Btn primary small href={LINKS.sms}>Text JOIN</Btn>
         </div>
@@ -264,9 +264,9 @@ function Live() {
       <FadeIn delay={.15}>
         <Card style={{ padding: "38px 28px", marginTop: 32 }}>
           <ShimmerBar />
-          <div style={{ fontFamily: "'Jost',sans-serif", fontSize: 10, color: C.rose, fontWeight: 600, letterSpacing: 3.5, textTransform: "uppercase", marginBottom: 12 }}>First Radiant Reveal In</div>
+          <div style={{ fontFamily: "'Jost',sans-serif", fontSize: 13, color: C.rose, fontWeight: 600, letterSpacing: 3.5, textTransform: "uppercase", marginBottom: 12 }}>First Radiant Reveal In</div>
           <div style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: "clamp(32px,7vw,50px)", fontWeight: 500, fontStyle: "italic", color: C.roseLight, letterSpacing: 3, marginBottom: 14 }}>{cd}</div>
-          <div style={{ fontFamily: "'Jost',sans-serif", fontSize: 14, color: C.text2, marginBottom: 24, fontWeight: 300 }}>Monday, April 27 at 7:00 PM ET · TikTok Live</div>
+          <div style={{ fontFamily: "'Jost',sans-serif", fontSize: 18, color: C.text2, marginBottom: 24, fontWeight: 300 }}>Monday, April 27 at 7:00 PM ET · TikTok Live</div>
           <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
             <Btn primary small href={LINKS.tiktokLive}>Watch the Reveal</Btn>
             <Btn small href={LINKS.parties}>📅 View All Parties</Btn>
@@ -275,12 +275,12 @@ function Live() {
       </FadeIn>
       <FadeIn delay={.3}>
         <div style={{ marginTop: 20, background: `${C.rose}08`, border: `1px solid ${C.rose}10`, borderRadius: 16, padding: "16px 20px", display: "flex", alignItems: "center", justifyContent: "center", gap: 12, flexWrap: "wrap" }}>
-          <span style={{ fontFamily: "'Jost',sans-serif", fontSize: 14, color: C.text, fontWeight: 400 }}>Never miss a reveal party —</span>
+          <span style={{ fontFamily: "'Jost',sans-serif", fontSize: 18, color: C.text, fontWeight: 400 }}>Never miss a reveal party —</span>
           <Btn primary small href={LINKS.sms}>Text JOIN Now</Btn>
         </div>
       </FadeIn>
       <FadeIn delay={.4}>
-        <a href={LINKS.tiktok} target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", alignItems: "center", gap: 8, marginTop: 20, fontFamily: "'Jost',sans-serif", fontSize: 13, color: C.rose, textDecoration: "none", fontWeight: 500, letterSpacing: .5 }}>
+        <a href={LINKS.tiktok} target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", alignItems: "center", gap: 8, marginTop: 20, fontFamily: "'Jost',sans-serif", fontSize: 16, color: C.rose, textDecoration: "none", fontWeight: 500, letterSpacing: .5 }}>
           Follow @goddessradiantreveals on TikTok →
         </a>
       </FadeIn>
@@ -308,7 +308,7 @@ function HowItWorks() {
             <div style={{ position: "absolute", top: 14, right: 18, fontFamily: "'Cormorant Garamond',serif", fontSize: 56, fontWeight: 700, fontStyle: "italic", color: `${C.rose}07`, lineHeight: 1 }}>{s.n}</div>
             <div style={{ width: 36, height: 36, borderRadius: "50%", background: `${C.rose}14`, border: `1px solid ${C.rose}22`, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "'Cormorant Garamond',serif", fontSize: 15, fontWeight: 700, fontStyle: "italic", color: C.rose, marginBottom: 16 }}>{s.n}</div>
             <div style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 600, fontStyle: "italic", fontSize: 19, color: C.text, marginBottom: 8 }}>{s.title}</div>
-            <div style={{ fontFamily: "'Jost',sans-serif", fontSize: 13, color: C.text3, lineHeight: 1.75, fontWeight: 300 }}>{s.desc}</div>
+            <div style={{ fontFamily: "'Jost',sans-serif", fontSize: 17, color: C.text3, lineHeight: 1.75, fontWeight: 300 }}>{s.desc}</div>
           </Card>
         </FadeIn>)}
       </div>
@@ -336,7 +336,7 @@ function Community() {
           <Card style={{ padding: "28px 22px", textAlign: "center" }}>
             <div style={{ fontSize: 34, marginBottom: 14, animation: "driftUp 4s ease-in-out infinite", animationDelay: `${i * .5}s` }}>{v.icon}</div>
             <div style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 600, fontStyle: "italic", fontSize: 18, color: C.text, marginBottom: 8 }}>{v.title}</div>
-            <div style={{ fontFamily: "'Jost',sans-serif", fontSize: 13, color: C.text3, lineHeight: 1.75, fontWeight: 300 }}>{v.desc}</div>
+            <div style={{ fontFamily: "'Jost',sans-serif", fontSize: 17, color: C.text3, lineHeight: 1.75, fontWeight: 300 }}>{v.desc}</div>
           </Card>
         </FadeIn>)}
       </div>
@@ -357,7 +357,7 @@ function Board() {
           <ShimmerBar />
           <div style={{ fontSize: 48, marginBottom: 16, animation: "driftUp 4s ease-in-out infinite" }}>🎯</div>
           <div style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: "clamp(20px,4vw,26px)", fontWeight: 600, fontStyle: "italic", color: C.text, marginBottom: 10, lineHeight: 1.3 }}>See Who's Up Next</div>
-          <p style={{ fontFamily: "'Jost',sans-serif", fontSize: 14, color: C.text2, lineHeight: 1.75, fontWeight: 300, maxWidth: 380, margin: "0 auto 24px" }}>The reveal board lives on my Bomb Party page — check it before the live to see where you are in the lineup!</p>
+          <p style={{ fontFamily: "'Jost',sans-serif", fontSize: 18, color: C.text2, lineHeight: 1.75, fontWeight: 300, maxWidth: 420, margin: "0 auto 24px" }}>The reveal board lives on my Bomb Party page — check it before the live to see where you are in the lineup!</p>
           <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
             <Btn primary href={LINKS.parties}>View the Reveal Board</Btn>
             <Btn href={LINKS.tiktokLive}>Watch the Live</Btn>
@@ -379,10 +379,10 @@ function Alerts() {
           <ShimmerBar />
           <Flourish w={65} o={.28} style={{ margin: "0 auto 24px" }} />
           <Title size="clamp(24px,5vw,34px)">Stay Radiant, Goddess</Title>
-          <p style={{ fontFamily: "'Jost',sans-serif", fontSize: 14, color: C.text2, lineHeight: 1.75, fontWeight: 300, marginTop: 14, marginBottom: 8 }}>VIP drops, reveal party reminders & exclusive goddess-only deals — straight to your phone.</p>
+          <p style={{ fontFamily: "'Jost',sans-serif", fontSize: 18, color: C.text2, lineHeight: 1.75, fontWeight: 300, marginTop: 14, marginBottom: 8 }}>VIP drops, reveal party reminders & exclusive goddess-only deals — straight to your phone.</p>
           <p style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 15, fontStyle: "italic", color: C.rose, marginBottom: 28, fontWeight: 400 }}>Be one of the first goddesses to join — this is just the beginning.</p>
-          <a href={LINKS.sms} style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 10, padding: "16px 38px", borderRadius: 50, background: `linear-gradient(135deg,${C.rose},${C.roseDark})`, color: C.bg, fontFamily: "'Jost',sans-serif", fontSize: 16, fontWeight: 700, textDecoration: "none", boxShadow: `0 6px 28px ${C.rose}35`, letterSpacing: .8 }}>Text JOIN to (978) 969-5655</a>
-          <p style={{ fontFamily: "'Jost',sans-serif", fontSize: 9.5, color: C.text3, marginTop: 20, lineHeight: 1.5, fontWeight: 300, opacity: .65 }}>Up to 20 msgs/mo. Msg & data rates apply. Reply STOP to cancel. Consent is not a condition of purchase.</p>
+          <a href={LINKS.sms} style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", gap: 10, padding: "16px 38px", borderRadius: 50, background: `linear-gradient(135deg,${C.rose},${C.roseDark})`, color: C.bg, fontFamily: "'Jost',sans-serif", fontSize: 18, fontWeight: 700, textDecoration: "none", boxShadow: `0 6px 28px ${C.rose}35`, letterSpacing: .8 }}>Text JOIN to (978) 969-5655</a>
+          <p style={{ fontFamily: "'Jost',sans-serif", fontSize: 12, color: C.text3, marginTop: 20, lineHeight: 1.5, fontWeight: 300, opacity: .65 }}>Up to 20 msgs/mo. Msg & data rates apply. Reply STOP to cancel. Consent is not a condition of purchase.</p>
         </Card>
       </FadeIn>
     </div>
@@ -433,7 +433,7 @@ function Contact() {
     transition: "border-color .3s, box-shadow .3s", letterSpacing: .3,
   });
 
-  const errStyle = { fontFamily: "'Jost',sans-serif", fontSize: 11, color: C.error, marginTop: 4, textAlign: "left", fontWeight: 400 };
+  const errStyle = { fontFamily: "'Jost',sans-serif", fontSize: 13, color: C.error, marginTop: 4, textAlign: "left", fontWeight: 400 };
 
   return <section id="contact" style={{ padding: "48px 24px 64px", position: "relative" }}>
     <Glow top="50%" left="50%" color={C.rose} size={350} />
@@ -449,28 +449,28 @@ function Contact() {
             <div style={{ textAlign: "center", padding: "20px 0" }}>
               <div style={{ fontSize: 48, marginBottom: 16 }}>💌</div>
               <div style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 24, fontWeight: 600, fontStyle: "italic", color: C.text, marginBottom: 8 }}>Message Ready!</div>
-              <p style={{ fontFamily: "'Jost',sans-serif", fontSize: 14, color: C.text2, lineHeight: 1.7, fontWeight: 300 }}>Your email app should be opening now. If it didn't, you can email me directly at <a href={`mailto:${LINKS.email}`} style={{ color: C.rose, textDecoration: "none" }}>{LINKS.email}</a></p>
-              <button onClick={() => { setSent(false); setForm({ name: "", email: "", message: "" }); setTouched({}); setErrors({}); }} style={{ marginTop: 20, background: `${C.rose}14`, border: `1px solid ${C.rose}22`, color: C.roseLight, padding: "10px 24px", borderRadius: 50, cursor: "pointer", fontFamily: "'Jost',sans-serif", fontSize: 13, fontWeight: 600, letterSpacing: .5 }}>Send Another Message</button>
+              <p style={{ fontFamily: "'Jost',sans-serif", fontSize: 18, color: C.text2, lineHeight: 1.7, fontWeight: 300 }}>Your email app should be opening now. If it didn't, you can email me directly at <a href={`mailto:${LINKS.email}`} style={{ color: C.rose, textDecoration: "none" }}>{LINKS.email}</a></p>
+              <button onClick={() => { setSent(false); setForm({ name: "", email: "", message: "" }); setTouched({}); setErrors({}); }} style={{ marginTop: 20, background: `${C.rose}14`, border: `1px solid ${C.rose}22`, color: C.roseLight, padding: "10px 24px", borderRadius: 50, cursor: "pointer", fontFamily: "'Jost',sans-serif", fontSize: 15, fontWeight: 600, letterSpacing: .5 }}>Send Another Message</button>
             </div>
           ) : (
             <div>
               <div style={{ marginBottom: 16, textAlign: "left" }}>
-                <label style={{ fontFamily: "'Jost',sans-serif", fontSize: 12, color: C.text2, fontWeight: 500, letterSpacing: .5, display: "block", marginBottom: 6 }}>Name <span style={{ color: C.rose }}>*</span></label>
+                <label style={{ fontFamily: "'Jost',sans-serif", fontSize: 15, color: C.text2, fontWeight: 500, letterSpacing: .5, display: "block", marginBottom: 6 }}>Name <span style={{ color: C.rose }}>*</span></label>
                 <input type="text" value={form.name} onChange={e => setForm(p => ({ ...p, name: e.target.value }))} onBlur={() => handleBlur("name")} placeholder="Your name" style={inputStyle("name")} />
                 {touched.name && errors.name && <div style={errStyle}>{errors.name}</div>}
               </div>
               <div style={{ marginBottom: 16, textAlign: "left" }}>
-                <label style={{ fontFamily: "'Jost',sans-serif", fontSize: 12, color: C.text2, fontWeight: 500, letterSpacing: .5, display: "block", marginBottom: 6 }}>Email <span style={{ color: C.rose }}>*</span></label>
+                <label style={{ fontFamily: "'Jost',sans-serif", fontSize: 15, color: C.text2, fontWeight: 500, letterSpacing: .5, display: "block", marginBottom: 6 }}>Email <span style={{ color: C.rose }}>*</span></label>
                 <input type="email" value={form.email} onChange={e => setForm(p => ({ ...p, email: e.target.value }))} onBlur={() => handleBlur("email")} placeholder="your@email.com" style={inputStyle("email")} />
                 {touched.email && errors.email && <div style={errStyle}>{errors.email}</div>}
               </div>
               <div style={{ marginBottom: 24, textAlign: "left" }}>
-                <label style={{ fontFamily: "'Jost',sans-serif", fontSize: 12, color: C.text2, fontWeight: 500, letterSpacing: .5, display: "block", marginBottom: 6 }}>Message <span style={{ color: C.rose }}>*</span> <span style={{ color: C.text3, fontWeight: 300 }}>(min. 20 characters)</span></label>
+                <label style={{ fontFamily: "'Jost',sans-serif", fontSize: 15, color: C.text2, fontWeight: 500, letterSpacing: .5, display: "block", marginBottom: 6 }}>Message <span style={{ color: C.rose }}>*</span> <span style={{ color: C.text3, fontWeight: 300 }}>(min. 20 characters)</span></label>
                 <textarea value={form.message} onChange={e => setForm(p => ({ ...p, message: e.target.value }))} onBlur={() => handleBlur("message")} placeholder="Tell me what's on your mind..." rows={4} style={{ ...inputStyle("message"), resize: "vertical", minHeight: 100 }} />
                 {touched.message && errors.message && <div style={errStyle}>{errors.message}</div>}
                 {form.message.length > 0 && form.message.length < 20 && <div style={{ ...errStyle, color: C.text3 }}>{form.message.length}/20 characters</div>}
               </div>
-              <button onClick={handleSubmit} style={{ width: "100%", padding: "15px 34px", borderRadius: 50, fontSize: 15, fontWeight: 600, fontFamily: "'Jost',sans-serif", cursor: "pointer", letterSpacing: .8, background: `linear-gradient(135deg,${C.rose},${C.roseDark})`, color: C.bg, border: "none", boxShadow: `0 4px 20px ${C.rose}30`, transition: "all .3s" }}>
+              <button onClick={handleSubmit} style={{ width: "100%", padding: "15px 34px", borderRadius: 50, fontSize: 17, fontWeight: 600, fontFamily: "'Jost',sans-serif", cursor: "pointer", letterSpacing: .8, background: `linear-gradient(135deg,${C.rose},${C.roseDark})`, color: C.bg, border: "none", boxShadow: `0 4px 20px ${C.rose}30`, transition: "all .3s" }}>
                 Send Message ✦
               </button>
             </div>
@@ -513,11 +513,11 @@ function Privacy() {
           {sections.map((s, i) => (
             <div key={i} style={{ marginBottom: 24 }}>
               <h3 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 18, fontWeight: 600, fontStyle: "italic", color: C.roseLight, marginBottom: 8 }}>{s.title}</h3>
-              <p style={{ fontFamily: "'Jost',sans-serif", fontSize: 14, color: C.text2, lineHeight: 1.75, fontWeight: 300 }}>{s.body}</p>
+              <p style={{ fontFamily: "'Jost',sans-serif", fontSize: 18, color: C.text2, lineHeight: 1.75, fontWeight: 300 }}>{s.body}</p>
             </div>
           ))}
           <div style={{ borderTop: `1px solid ${C.rose}12`, paddingTop: 20, marginTop: 8 }}>
-            <p style={{ fontFamily: "'Jost',sans-serif", fontSize: 12, color: C.text3, lineHeight: 1.6, fontWeight: 300, textAlign: "center" }}>
+            <p style={{ fontFamily: "'Jost',sans-serif", fontSize: 14, color: C.text3, lineHeight: 1.6, fontWeight: 300, textAlign: "center" }}>
               Last updated: April 2026 · Goddess Radiant Reveals · Independent Bomb Party Rep
             </p>
           </div>
@@ -538,16 +538,16 @@ function Footer() {
       <div style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 24, fontWeight: 600, fontStyle: "italic", color: C.roseLight, marginBottom: 6, letterSpacing: 1 }}>Goddess Radiant Reveals</div>
       <p style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 15, fontStyle: "italic", color: C.text3, marginBottom: 20, fontWeight: 300 }}>Where every woman is a goddess, every reveal is radiant, and every moment is yours.</p>
       <div style={{ display: "flex", gap: 18, justifyContent: "center", flexWrap: "wrap", marginBottom: 16 }}>
-        {[["Home", "#top"], ["Contact", "#contact"], ["Privacy", "#privacy"]].map(([l, h]) => <a key={l} href={h} onClick={scrollTo(h)} style={{ fontFamily: "'Jost',sans-serif", fontSize: 13, color: C.text2, textDecoration: "none", fontWeight: 400, letterSpacing: .5 }}>{l}</a>)}
+        {[["Home", "#top"], ["Contact", "#contact"], ["Privacy", "#privacy"]].map(([l, h]) => <a key={l} href={h} onClick={scrollTo(h)} style={{ fontFamily: "'Jost',sans-serif", fontSize: 15, color: C.text2, textDecoration: "none", fontWeight: 400, letterSpacing: .5 }}>{l}</a>)}
       </div>
       <div style={{ display: "flex", gap: 18, justifyContent: "center", flexWrap: "wrap", marginBottom: 24 }}>
-        <a href={LINKS.tiktok} target="_blank" rel="noopener noreferrer" style={{ fontFamily: "'Jost',sans-serif", fontSize: 13, color: C.rose, textDecoration: "none", fontWeight: 500 }}>TikTok</a>
-        <a href={LINKS.shop} target="_blank" rel="noopener noreferrer" style={{ fontFamily: "'Jost',sans-serif", fontSize: 13, color: C.rose, textDecoration: "none", fontWeight: 500 }}>Shop</a>
-        <a href={LINKS.parties} target="_blank" rel="noopener noreferrer" style={{ fontFamily: "'Jost',sans-serif", fontSize: 13, color: C.rose, textDecoration: "none", fontWeight: 500 }}>Parties</a>
+        <a href={LINKS.tiktok} target="_blank" rel="noopener noreferrer" style={{ fontFamily: "'Jost',sans-serif", fontSize: 15, color: C.rose, textDecoration: "none", fontWeight: 500 }}>TikTok</a>
+        <a href={LINKS.shop} target="_blank" rel="noopener noreferrer" style={{ fontFamily: "'Jost',sans-serif", fontSize: 15, color: C.rose, textDecoration: "none", fontWeight: 500 }}>Shop</a>
+        <a href={LINKS.parties} target="_blank" rel="noopener noreferrer" style={{ fontFamily: "'Jost',sans-serif", fontSize: 15, color: C.rose, textDecoration: "none", fontWeight: 500 }}>Parties</a>
       </div>
-      <div style={{ background: `${C.rose}06`, borderRadius: 14, padding: "16px 20px", marginBottom: 28, fontFamily: "'Jost',sans-serif", fontSize: 11, color: C.text3, lineHeight: 1.7, fontWeight: 300 }}>All jewelry is designed and manufactured by Bomb Party, LLC. As an independent rep, I sell Bomb Party products through their platform. Revealed pieces may be won during live giveaways or redeemed with loyalty points.</div>
+      <div style={{ background: `${C.rose}06`, borderRadius: 14, padding: "16px 20px", marginBottom: 28, fontFamily: "'Jost',sans-serif", fontSize: 13, color: C.text3, lineHeight: 1.7, fontWeight: 300 }}>All jewelry is designed and manufactured by Bomb Party, LLC. As an independent rep, I sell Bomb Party products through their platform. Revealed pieces may be won during live giveaways or redeemed with loyalty points.</div>
       <Btn primary small href={LINKS.shop}>✦ &nbsp;Treat Yourself, Goddess</Btn>
-      <p style={{ fontFamily: "'Jost',sans-serif", fontSize: 11, color: C.text3, marginTop: 28, fontWeight: 300, letterSpacing: .5 }}>© 2026 Goddess Radiant Reveals · Independent Bomb Party Rep</p>
+      <p style={{ fontFamily: "'Jost',sans-serif", fontSize: 13, color: C.text3, marginTop: 28, fontWeight: 300, letterSpacing: .5 }}>© 2026 Goddess Radiant Reveals · Independent Bomb Party Rep</p>
     </div>
   </footer>;
 }
