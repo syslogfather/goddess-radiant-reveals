@@ -403,20 +403,22 @@ function Hero() {
     >
       <FadeIn>
         <img
-          src="/avatar.jpg"
+          src={`${process.env.PUBLIC_URL || ""}/avatar.jpg`}
           alt="Goddess Radiant Reveals"
           style={{
-          width: 72,
-          height: 72,
-          borderRadius: "50%",
-          objectFit: "cover",
-          marginBottom: 20,
-          border: `1px solid ${T.border}`,
-        }}
+            width: 88,
+            height: 88,
+            borderRadius: "50%",
+            objectFit: "cover",
+            objectPosition: "center top",
+            marginBottom: S.md,
+            border: `1px solid ${T.border}`,
+            display: "block",
+          }}
         />
       </FadeIn>
 
-      <FadeIn>
+      <FadeIn delay={0.03}>
         <div
           style={{
             display: "inline-flex",
