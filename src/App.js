@@ -146,7 +146,7 @@ function Hero() {
       <Btn href="#live">Join a Reveal Party</Btn>
     </div></FadeIn>
     <FadeIn delay={.7}><div style={{ marginTop: 48, display: "flex", gap: 24, flexWrap: "wrap", justifyContent: "center", fontFamily: "'Jost',sans-serif", fontSize: 16, fontWeight: 600, color: C.text2, letterSpacing: .5 }}>
-      {[["💎", "Be My First Diamond!"], ["🦄", "Help Me Find a Unicorn"], ["⭐", "Be Part of the Journey"]].map(([i, t]) => <span key={t} style={{ display: "flex", alignItems: "center", gap: 6 }}><span style={{ fontSize: 14 }}>{i}</span>{t}</span>)}
+      {[["💎", "Be My First Diamond!"], ["🦄", "7 Unicorns Revealed at the first 7 parties!"], ["⭐", "Be Part of the Journey"]].map(([i, t]) => <span key={t} style={{ display: "flex", alignItems: "center", gap: 6 }}><span style={{ fontSize: 14 }}>{i}</span>{t}</span>)}
     </div></FadeIn>
     <div style={{ position: "absolute", bottom: 28, left: "50%", transform: "translateX(-50%)", animation: "scrollPulse 2.8s ease-in-out infinite", fontFamily: "'Jost',sans-serif", fontSize: 10, letterSpacing: 4, textTransform: "uppercase", color: C.text3 }}>scroll</div>
   </section>;
@@ -264,9 +264,9 @@ function Live() {
       <FadeIn delay={.15}>
         <Card style={{ padding: "38px 28px", marginTop: 32 }}>
           <ShimmerBar />
-          <div style={{ fontFamily: "'Jost',sans-serif", fontSize: 13, color: C.rose, fontWeight: 600, letterSpacing: 3.5, textTransform: "uppercase", marginBottom: 12 }}>First Radiant Reveal In</div>
+          <div style={{ fontFamily: "'Jost',sans-serif", fontSize: 13, color: C.rose, fontWeight: 600, letterSpacing: 3.5, textTransform: "uppercase", marginBottom: 12 }}>Second Radiant Reveal Party started</div>
           <div style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: "clamp(36px,8vw,56px)", fontWeight: 700, fontStyle: "italic", color: C.roseLight, letterSpacing: 3, marginBottom: 14 }}>{cd}</div>
-          <div style={{ fontFamily: "'Jost',sans-serif", fontSize: 18, color: C.text, marginBottom: 24, fontWeight: 500 }}>Monday, April 27 at 7:00 PM ET · TikTok Live</div>
+          <div style={{ fontFamily: "'Jost',sans-serif", fontSize: 18, color: C.text, marginBottom: 24, fontWeight: 500 }}>Sunday, May 3rd · Follow me and keep an eye for my TikTok Live Parties!</div>
           <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
             <Btn primary small href={LINKS.tiktokLive}>Watch the Reveal</Btn>
             <Btn small href={LINKS.parties}>📅 View All Parties</Btn>
@@ -518,7 +518,7 @@ function Privacy() {
           ))}
           <div style={{ borderTop: `1px solid ${C.rose}12`, paddingTop: 20, marginTop: 8 }}>
             <p style={{ fontFamily: "'Jost',sans-serif", fontSize: 14, color: C.text3, lineHeight: 1.6, fontWeight: 300, textAlign: "center" }}>
-              Last updated: April 2026 · Goddess Radiant Reveals · Independent Bomb Party Rep
+              Last updated: May 2026 · Goddess Radiant Reveals · Independent Bomb Party Rep
             </p>
           </div>
         </Card>
