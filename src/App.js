@@ -103,7 +103,7 @@ function Nav({ onMenu }) {
 }
 function Menu({ open, onClose }) {
   if (!open) return null;
-  const links = [["Home", "#top"], ["Treat Yourself", LINKS.shop], ["Diamond Hunt", "#diamond"], ["Live Reveals", "#live"], ["The Goddess Experience", "#how"], ["Your Radiant Community", "#community"], ["Dance Board", "#dance-board"], ["Claim Board", "#board"], ["Contact", "#contact"], ["Privacy", "#privacy"]];
+  const links = [["Home", "#top"], ["Treat Yourself", LINKS.shop], ["Diamond Hunt", "#diamond"], ["Live Reveals", "#live"], ["The Goddess Experience", "#how"], ["Your Radiant Community", "#community"], ["Virtual Dance Board", "#dance-board"], ["Claim Board", "#board"], ["Contact", "#contact"], ["Privacy", "#privacy"]];
   return <div style={{ position: "fixed", inset: 0, zIndex: 200, background: `${C.bg}f5`, backdropFilter: "blur(24px)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 2 }}>
     <button onClick={onClose} style={{ position: "absolute", top: 16, right: 20, background: "none", border: "none", color: C.roseLight, fontSize: 28, cursor: "pointer" }}>✕</button>
     {links.map(([l, h]) => <a key={l} href={h} onClick={(e) => { if (h.startsWith("#")) { e.preventDefault(); onClose(); const el = document.querySelector(h); if (el) el.scrollIntoView({ behavior: "smooth" }); } else { onClose(); }}} style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 23, fontStyle: "italic", fontWeight: 500, color: C.text, textDecoration: "none", padding: "9px 32px", letterSpacing: 1 }}>{l}</a>)}
@@ -252,7 +252,7 @@ function DiamondHunt() {
 function Live() {
   const [cd, setCd] = useState("");
   const nl = useMemo(() => new Date("2026-04-27T19:00:00-04:00"), []);
-  useEffect(() => { const tick = () => { const diff = nl - new Date(); if (diff <= 0) { setCd("LIVE NOW"); return; } const d = Math.floor(diff / 864e5), h = Math.floor((diff % 864e5) / 36e5), m = Math.floor((diff % 36e5) / 6e4), s = Math.floor((diff % 6e4) / 1e3); setCd(`${d}d  ${h}h  ${m}m  ${s}s`); }; tick(); const iv = setInterval(tick, 1000); return () => clearInterval(iv); }, [nl]);
+  useEffect(() => { const tick = () => { const diff = nl - new Date(); if (diff <= 0) { setCd("OPEN PARTY"); return; } const d = Math.floor(diff / 864e5), h = Math.floor((diff % 864e5) / 36e5), m = Math.floor((diff % 36e5) / 6e4), s = Math.floor((diff % 6e4) / 1e3); setCd(`${d}d  ${h}h  ${m}m  ${s}s`); }; tick(); const iv = setInterval(tick, 1000); return () => clearInterval(iv); }, [nl]);
 
   return <section id="live" style={{ padding: "48px 24px 64px", position: "relative" }}>
     <div style={{ maxWidth: 560, margin: "0 auto", textAlign: "center" }}>
@@ -273,6 +273,7 @@ function Live() {
           </div>
         </Card>
       </FadeIn>
+      */
       <FadeIn delay={.3}>
         <div style={{ marginTop: 20, background: `${C.rose}08`, border: `1px solid ${C.rose}10`, borderRadius: 16, padding: "16px 20px", display: "flex", alignItems: "center", justifyContent: "center", gap: 12, flexWrap: "wrap" }}>
           <span style={{ fontFamily: "'Jost',sans-serif", fontSize: 18, color: C.text, fontWeight: 500 }}>Never miss a reveal party —</span>
@@ -421,7 +422,7 @@ function DanceBoard() {
         {selected !== null && (
           <FadeIn delay={.05}>
             <Card style={{ padding: "24px 22px", marginTop: 16, textAlign: "left", display: "flex", gap: 18, alignItems: "center", flexWrap: "wrap", justifyContent: "center" }}>
-              <img src={DANCE_PIECES[selected].img} alt={DANCE_PIECES[selected].name} style={{ width: 110, height: 110, borderRadius: 14, objectFit: "cover", flexShrink: 0, border: `1px solid ${C.rose}22` }} />
+              <img src={DANCE_PIECES[selected].img} alt={DANCE_PIECES[selected].name} style={{ width: 180, height: 180, borderRadius: 14, objectFit: "cover", flexShrink: 0, border: `1px solid ${C.rose}22` }} />
               <div style={{ flex: "1 1 240px", minWidth: 0 }}>
                 <div style={{ fontFamily: "'Jost',sans-serif", fontSize: 12, fontWeight: 600, letterSpacing: 3, textTransform: "uppercase", color: C.rose, marginBottom: 4 }}>{DANCE_PIECES[selected].id}</div>
                 <div style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 24, fontWeight: 700, fontStyle: "italic", color: C.text, lineHeight: 1.1, marginBottom: 8 }}>{DANCE_PIECES[selected].name}</div>
