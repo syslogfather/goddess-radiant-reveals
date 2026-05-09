@@ -357,12 +357,12 @@ const IMG_SERENA_RING       = "/images/dance-board/the-serena-ring.jpg";
 const IMG_DARLING_BE_SHARP  = "/images/dance-board/darling-be-sharp.jpg";
 
 const DANCE_PIECES = [
-  { id: "NK43201", name: "Velvet Luxury",        stone: "Lab-Created Alexandrite", materials: "Gold Plating",                            length: '18" + 2.5" extender', msrp: 138, status: "available", img: IMG_VELVET_LUXURY     },
-  { id: "ER41845", name: "A Dream Of You",       stone: "Lab-Created Alexandrite", materials: "Rose Gold Plating",                       length: null,                  msrp: 132, status: "available", img: IMG_DREAM_OF_YOU      },
-  { id: "NK72620", name: "She's Elegant & Grace",stone: "Ceramic Pearl",           materials: "Hematite Plating",                        length: '18" + 2.5" extender', msrp: 140, status: "available", img: IMG_ELEGANT_AND_GRACE },
-  { id: "RG16989", name: "She's Pure Drama",     stone: "Lab-Created Alexandrite", materials: "Rhodium Plating",                         length: null,                  msrp: 140, status: "available", img: IMG_PURE_DRAMA        },
-  { id: "RG61734", name: "The Serena Ring",      stone: "Lab-Created Alexandrite", materials: "Rose Gold Plating",                       length: null,                  msrp: 138, status: "available",   img: IMG_SERENA_RING       },
-  { id: "RG92496", name: "Darling, Be Sharp",    stone: "Lab-Created Sapphire fused with Genuine Quartz", materials: "Rose Gold Plating", length: null,                  msrp: 158, status: "available", img: IMG_DARLING_BE_SHARP  },
+  { id: "NK43201", name: "Velvet Luxury",        collection: "June 2026",          stone: "Lab-Created Alexandrite", materials: "Gold Plating",                            length: '18" + 2.5" extender', msrp: 138, status: "available", img: IMG_VELVET_LUXURY     },
+  { id: "ER41845", name: "A Dream Of You",       collection: "June 2026",          stone: "Lab-Created Alexandrite", materials: "Rose Gold Plating",                       length: null,                  msrp: 132, status: "available", img: IMG_DREAM_OF_YOU      },
+  { id: "NK72620", name: "She's Elegant & Grace",collection: "June 2026",          stone: "Ceramic Pearl",           materials: "Hematite Plating",                        length: '18" + 2.5" extender', msrp: 140, status: "available", img: IMG_ELEGANT_AND_GRACE },
+  { id: "RG16989", name: "She's Pure Drama",     collection: "June 2026",          stone: "Lab-Created Alexandrite", materials: "Rhodium Plating",                         length: null,                  msrp: 140, status: "available", img: IMG_PURE_DRAMA        },
+  { id: "RG61734", name: "The Serena Ring",      collection: "June 2026",          stone: "Lab-Created Alexandrite", materials: "Rose Gold Plating",                       length: null,                  msrp: 138, status: "available", img: IMG_SERENA_RING       },
+  { id: "RG92496", name: "Darling, Be Sharp",    collection: "June 2026",          stone: "Lab-Created Sapphire fused with Genuine Quartz", materials: "Rose Gold Plating",length: null,                  msrp: 158, status: "available", img: IMG_DARLING_BE_SHARP  },
 ];
 
 function DanceBoard() {
@@ -427,6 +427,7 @@ function DanceBoard() {
                 <div style={{ fontFamily: "'Jost',sans-serif", fontSize: 12, fontWeight: 600, letterSpacing: 3, textTransform: "uppercase", color: C.rose, marginBottom: 4 }}>{DANCE_PIECES[selected].id}</div>
                 <div style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 24, fontWeight: 700, fontStyle: "italic", color: C.text, lineHeight: 1.1, marginBottom: 8 }}>{DANCE_PIECES[selected].name}</div>
                 <div style={{ fontFamily: "'Jost',sans-serif", fontSize: 14, color: C.text2, lineHeight: 1.65, fontWeight: 400 }}>
+                  Collection: <strong style={{ color: C.text }}>{DANCE_PIECES[selected].collection}</strong><br />
                   Main stone: <strong style={{ color: C.text }}>{DANCE_PIECES[selected].stone}</strong><br />
                   Materials: {DANCE_PIECES[selected].materials}{DANCE_PIECES[selected].length ? ` · ${DANCE_PIECES[selected].length}` : ""}<br />
                   MSRP: <strong style={{ color: C.text }}>${DANCE_PIECES[selected].msrp}</strong>
