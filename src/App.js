@@ -376,7 +376,7 @@ function DanceBoard() {
         <FadeIn>
           <Label>Dance & Treasure</Label>
           <Title>The Radiant Virtual Dance Board</Title>
-          <Sub wide>Already revealed a piece you'd love to swap? Tap any radiant available piece below — these are the jewels currently on the virtual dance floor, ready to dance.</Sub>
+          <Sub wide>Already revealed a piece you'd love to swap? Tap any featured radiant available dancers below — these are featured dancers on the virtual dance floor, while many more can be viewed on my Lives. Are you ready to dance?</Sub>
         </FadeIn>
 
         <FadeIn delay={.15}>
