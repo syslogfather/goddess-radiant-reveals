@@ -146,7 +146,7 @@ function Hero() {
       <Btn href="#live">Join a Reveal Party</Btn>
     </div></FadeIn>
     <FadeIn delay={.7}><div style={{ marginTop: 48, display: "flex", gap: 24, flexWrap: "wrap", justifyContent: "center", fontFamily: "'Jost',sans-serif", fontSize: 16, fontWeight: 600, color: C.text2, letterSpacing: .5 }}>
-      {[["💎", "Be My First Diamond!"], ["🦄", "7 Unicorns Revealed at the first 7 parties!"], ["⭐", "Be Part of the Journey"]].map(([i, t]) => <span key={t} style={{ display: "flex", alignItems: "center", gap: 6 }}><span style={{ fontSize: 14 }}>{i}</span>{t}</span>)}
+      {[["💎", "Be My First Diamond!"], ["🦄", "7 Unicorns Revealed"], ["⭐", "Be Part of the Journey"]].map(([i, t]) => <span key={t} style={{ display: "flex", alignItems: "center", gap: 6 }}><span style={{ fontSize: 14 }}>{i}</span>{t}</span>)}
     </div></FadeIn>
     <div style={{ position: "absolute", bottom: 28, left: "50%", transform: "translateX(-50%)", animation: "scrollPulse 2.8s ease-in-out infinite", fontFamily: "'Jost',sans-serif", fontSize: 10, letterSpacing: 4, textTransform: "uppercase", color: C.text3 }}>scroll</div>
   </section>;
@@ -346,26 +346,111 @@ function Community() {
 }
 
 /* ═══════════════════════════════════════════════════
-   VIRTUAL BOARD
+   DANCE BOARD — tradeable jewelry
    ═══════════════════════════════════════════════════ */
-function Board() {
-  return <section id="board" style={{ padding: "48px 24px 64px" }}>
-    <div style={{ maxWidth: 560, margin: "0 auto", textAlign: "center" }}>
-      <FadeIn><Label>Your Spot Awaits</Label><Title>The Radiant Reveal Board</Title><Sub>Ordered your bomb? Your name is on the board! Head over to my Bomb Party page to see the full lineup and watch for your radiant moment.</Sub></FadeIn>
-      <FadeIn delay={.15}>
-        <Card style={{ padding: "36px 28px", marginTop: 32, textAlign: "center" }}>
-          <ShimmerBar />
-          <div style={{ fontSize: 48, marginBottom: 16, animation: "driftUp 4s ease-in-out infinite" }}>🎯</div>
-          <div style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: "clamp(20px,4vw,26px)", fontWeight: 800, fontStyle: "italic", color: C.text, marginBottom: 10, lineHeight: 1.3 }}>See Who's Up Next</div>
-          <p style={{ fontFamily: "'Jost',sans-serif", fontSize: 18, color: C.text, lineHeight: 1.7, fontWeight: 500, maxWidth: 440, margin: "0 auto 24px" }}>The reveal board lives on my Bomb Party page — check it before the live to see where you are in the lineup!</p>
-          <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
-            <Btn primary href={LINKS.parties}>View the Reveal Board</Btn>
-            <Btn href={LINKS.tiktokLive}>Watch the Live</Btn>
+const IMG_VELVET_LUXURY     = "/images/dance-board/velvet-luxury.jpg";
+const IMG_DREAM_OF_YOU      = "/images/dance-board/a-dream-of-you.jpg";
+const IMG_ELEGANT_AND_GRACE = "/images/dance-board/shes-elegant-and-grace.jpg";
+const IMG_PURE_DRAMA        = "/images/dance-board/shes-pure-drama.jpg";
+const IMG_SERENA_RING       = "/images/dance-board/the-serena-ring.jpg";
+const IMG_DARLING_BE_SHARP  = "/images/dance-board/darling-be-sharp.jpg";
+
+const DANCE_PIECES = [
+  { id: "NK43201", name: "Velvet Luxury",        stone: "Lab-Created Alexandrite", materials: "Gold Plating",                            length: '18" + 2.5" extender', msrp: 138, status: "available", img: IMG_VELVET_LUXURY     },
+  { id: "ER41845", name: "A Dream Of You",       stone: "Lab-Created Alexandrite", materials: "Rose Gold Plating",                       length: null,                  msrp: 132, status: "available", img: IMG_DREAM_OF_YOU      },
+  { id: "NK72620", name: "She's Elegant & Grace",stone: "Ceramic Pearl",           materials: "Hematite Plating",                        length: '18" + 2.5" extender', msrp: 140, status: "available", img: IMG_ELEGANT_AND_GRACE },
+  { id: "RG16989", name: "She's Pure Drama",     stone: "Lab-Created Alexandrite", materials: "Rhodium Plating",                         length: null,                  msrp: 140, status: "available", img: IMG_PURE_DRAMA        },
+  { id: "RG61734", name: "The Serena Ring",      stone: "Lab-Created Alexandrite", materials: "Rose Gold Plating",                       length: null,                  msrp: 138, status: "available",   img: IMG_SERENA_RING       },
+  { id: "RG92496", name: "Darling, Be Sharp",    stone: "Lab-Created Sapphire fused with Genuine Quartz", materials: "Rose Gold Plating", length: null,                  msrp: 158, status: "available", img: IMG_DARLING_BE_SHARP  },
+];
+
+function DanceBoard() {
+  const [selected, setSelected] = useState(null);
+
+  return (
+    <section id="dance-board" style={{ padding: "48px 24px 64px", position: "relative" }}>
+      <Glow top="35%" left="20%" color={C.gold} size={340} />
+      <Glow top="65%" left="80%" color={C.plum} size={280} />
+      <div style={{ maxWidth: 720, margin: "0 auto", textAlign: "center" }}>
+        <FadeIn>
+          <Label>Dance & Treasure</Label>
+          <Title>The Radiant Virtual Dance Board</Title>
+          <Sub wide>Already revealed a piece you'd love to swap? Tap any radiant available piece below — these are the jewels currently on the virtual dance floor, ready to dance.</Sub>
+        </FadeIn>
+
+        <FadeIn delay={.15}>
+          <Card style={{ padding: "28px 20px", marginTop: 32 }}>
+            <ShimmerBar />
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(6,1fr)", gap: 8 }}>
+              {DANCE_PIECES.map((p, i) => {
+                const isClaimed = p.status === "claimed";
+                const isSelected = selected === i;
+                return (
+                  <button
+                    key={i}
+                    onClick={() => !isClaimed && setSelected(isSelected ? null : i)}
+                    disabled={isClaimed}
+                    style={{
+                      aspectRatio: "1", borderRadius: 12, padding: 0, position: "relative", overflow: "hidden",
+                      background: isClaimed ? "#f3e8e3" : "#fff",
+                      border: `1.5px solid ${isSelected ? C.rose : isClaimed ? C.rose + "12" : C.rose + "22"}`,
+                      cursor: isClaimed ? "not-allowed" : "pointer",
+                      transition: "all .35s cubic-bezier(.16,1,.3,1)",
+                      boxShadow: isSelected ? `0 6px 22px ${C.rose}33` : "0 1px 4px rgba(0,0,0,0.04)",
+                      transform: isSelected ? "translateY(-2px)" : "none",
+                      filter: isClaimed ? "grayscale(0.85) opacity(0.45)" : "none",
+                    }}
+                    aria-label={`${p.name} ${p.id} - ${p.status}`}
+                  >
+                    <img src={p.img} alt={p.name} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+                    {isClaimed && (
+                      <div style={{
+                        position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center",
+                        fontFamily: "'Cormorant Garamond',serif", fontStyle: "italic", fontWeight: 700,
+                        color: C.roseDark, fontSize: 11, letterSpacing: 1.5, textTransform: "uppercase",
+                        background: `${C.bg}99`,
+                      }}>Claimed</div>
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+          </Card>
+        </FadeIn>
+
+        {selected !== null && (
+          <FadeIn delay={.05}>
+            <Card style={{ padding: "24px 22px", marginTop: 16, textAlign: "left", display: "flex", gap: 18, alignItems: "center", flexWrap: "wrap", justifyContent: "center" }}>
+              <img src={DANCE_PIECES[selected].img} alt={DANCE_PIECES[selected].name} style={{ width: 110, height: 110, borderRadius: 14, objectFit: "cover", flexShrink: 0, border: `1px solid ${C.rose}22` }} />
+              <div style={{ flex: "1 1 240px", minWidth: 0 }}>
+                <div style={{ fontFamily: "'Jost',sans-serif", fontSize: 12, fontWeight: 600, letterSpacing: 3, textTransform: "uppercase", color: C.rose, marginBottom: 4 }}>{DANCE_PIECES[selected].id}</div>
+                <div style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 24, fontWeight: 700, fontStyle: "italic", color: C.text, lineHeight: 1.1, marginBottom: 8 }}>{DANCE_PIECES[selected].name}</div>
+                <div style={{ fontFamily: "'Jost',sans-serif", fontSize: 14, color: C.text2, lineHeight: 1.65, fontWeight: 400 }}>
+                  Main stone: <strong style={{ color: C.text }}>{DANCE_PIECES[selected].stone}</strong><br />
+                  Materials: {DANCE_PIECES[selected].materials}{DANCE_PIECES[selected].length ? ` · ${DANCE_PIECES[selected].length}` : ""}<br />
+                  MSRP: <strong style={{ color: C.text }}>${DANCE_PIECES[selected].msrp}</strong>
+                </div>
+              </div>
+              <Btn primary small href={LINKS.tiktok}>Ask About This Trade</Btn>
+            </Card>
+          </FadeIn>
+        )}
+
+        <FadeIn delay={.25}>
+          <p style={{ fontFamily: "'Jost',sans-serif", fontSize: 13, color: C.text3, marginTop: 20, fontWeight: 300, lineHeight: 1.65 }}>
+            Tap a piece for details. Claimed pieces are no longer available — new dancers join the virtual dance floor as soon as possible but please be patient.
+          </p>
+        </FadeIn>
+
+        <FadeIn delay={.3}>
+          <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap", marginTop: 20 }}>
+            <Btn primary href={LINKS.tiktok}>Catch Us on TikTok LIVE</Btn>
+            <Btn href={LINKS.parties}>See Upcoming Parties</Btn>
           </div>
-        </Card>
-      </FadeIn>
-    </div>
-  </section>;
+        </FadeIn>
+      </div>
+    </section>
+  );
 }
 
 /* ═══════════════════════════════════════════════════
@@ -588,7 +673,7 @@ export default function GoddessRadiantReveals() {
       <Divider />
       <Community />
       <Divider />
-      <Board />
+      <DanceBoard />
       <Divider />
       <Alerts />
       <Divider />
