@@ -103,7 +103,7 @@ function Nav({ onMenu }) {
 }
 function Menu({ open, onClose }) {
   if (!open) return null;
-  const links = [["Home", "#top"], ["Treat Yourself", LINKS.shop], ["Diamond Hunt", "#diamond"], ["Live Reveals", "#live"], ["The Goddess Experience", "#how"], ["Your Radiant Community", "#community"], ["Claim Board", "#board"], ["Contact", "#contact"], ["Privacy", "#privacy"]];
+  const links = [["Home", "#top"], ["Treat Yourself", LINKS.shop], ["Diamond Hunt", "#diamond"], ["Live Reveals", "#live"], ["The Goddess Experience", "#how"], ["Your Radiant Community", "#community"], ["Dance Board", "#dance-board"], ["Claim Board", "#board"], ["Contact", "#contact"], ["Privacy", "#privacy"]];
   return <div style={{ position: "fixed", inset: 0, zIndex: 200, background: `${C.bg}f5`, backdropFilter: "blur(24px)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 2 }}>
     <button onClick={onClose} style={{ position: "absolute", top: 16, right: 20, background: "none", border: "none", color: C.roseLight, fontSize: 28, cursor: "pointer" }}>✕</button>
     {links.map(([l, h]) => <a key={l} href={h} onClick={(e) => { if (h.startsWith("#")) { e.preventDefault(); onClose(); const el = document.querySelector(h); if (el) el.scrollIntoView({ behavior: "smooth" }); } else { onClose(); }}} style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 23, fontStyle: "italic", fontWeight: 500, color: C.text, textDecoration: "none", padding: "9px 32px", letterSpacing: 1 }}>{l}</a>)}
