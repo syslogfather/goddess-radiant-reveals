@@ -267,7 +267,7 @@ function Live() {
           <ShimmerBar />
           <div style={{ fontFamily: "'Jost',sans-serif", fontSize: 13, color: C.rose, fontWeight: 600, letterSpacing: 3.5, textTransform: "uppercase", marginBottom: 12 }}>Second Radiant Reveal Party started</div>
           <div style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: "clamp(36px,8vw,56px)", fontWeight: 700, fontStyle: "italic", color: C.roseLight, letterSpacing: 3, marginBottom: 14 }}>{cd}</div>
-          <div style={{ fontFamily: "'Jost',sans-serif", fontSize: 18, color: C.text, marginBottom: 24, fontWeight: 500 }}>Sunday, May 3rd · Follow me and keep an eye for my TikTok Live Parties!</div>
+          <div style={{ fontFamily: "'Jost',sans-serif", fontSize: 18, color: C.text, marginBottom: 24, fontWeight: 500 }}>Monday, May 11th · Follow me and keep an eye for my TikTok Live Parties!</div>
           <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
             <Btn primary small href={LINKS.tiktokLive}>Watch the Reveal</Btn>
             <Btn small href={LINKS.parties}>📅 View All Parties</Btn>
