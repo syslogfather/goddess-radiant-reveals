@@ -104,7 +104,7 @@ function Nav({ onMenu }) {
 }
 function Menu({ open, onClose }) {
   if (!open) return null;
-  const links = [["Home", "#top"], ["Treat Yourself", LINKS.shop], ["Diamond Hunt", "#diamond"], ["Live Reveals", "#live"], ["The Goddess Experience", "#how"], ["Your Radiant Community", "#community"], ["Virtual Dance Board", "#dance-board"], ["Claim Board", "#board"], ["Contact", "#contact"], ["Privacy", "#privacy"]];
+  const links = [["Home", "#top"], ["Loveaway Board", "#loveaway-board"], ["Virtual Dance Board", "#dance-board"], ["Live Reveals", "#live"], ["The Goddess Experience", "#how"], ["Your Radiant Community", "#community"], ["Contact", "#contact"], ["Privacy", "#privacy"]];
   return <div style={{ position: "fixed", inset: 0, zIndex: 200, background: `${C.bg}f5`, backdropFilter: "blur(24px)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 2 }}>
     <button onClick={onClose} style={{ position: "absolute", top: 16, right: 20, background: "none", border: "none", color: C.roseLight, fontSize: 28, cursor: "pointer" }}>✕</button>
     {links.map(([l, h]) => <a key={l} href={h} onClick={(e) => { if (h.startsWith("#")) { e.preventDefault(); onClose(); const el = document.querySelector(h); if (el) el.scrollIntoView({ behavior: "smooth" }); } else { onClose(); }}} style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 23, fontStyle: "italic", fontWeight: 500, color: C.text, textDecoration: "none", padding: "9px 32px", letterSpacing: 1 }}>{l}</a>)}
@@ -140,217 +140,389 @@ function Hero() {
     <FadeIn delay={.24}><h1 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: "clamp(48px,12vw,88px)", fontWeight: 800, margin: "0 0 2px", lineHeight: 1.02, letterSpacing: 2, background: C.shimmer, backgroundSize: "200% auto", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", animation: "shimmer 6s linear infinite" }}>Radiant</h1></FadeIn>
     <FadeIn delay={.3}><h1 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: "clamp(48px,12vw,88px)", fontWeight: 700, fontStyle: "italic", color: C.text, margin: "0 0 12px", lineHeight: 1.02, letterSpacing: 1 }}>Reveals</h1></FadeIn>
     <FadeIn delay={.36}><Flourish w={85} o={.3} style={{ margin: "0 auto 30px" }} /></FadeIn>
-    <FadeIn delay={.42}><p style={{ fontFamily: "'Jost',sans-serif", fontSize: "clamp(17px,3.5vw,21px)", color: C.text, maxWidth: 460, lineHeight: 1.8, fontWeight: 500, letterSpacing: .3 }}>I'm a brand new fizzer on a mission — help me find the first diamond hiding in my starter kit! Pour something bubbly, gather your girls, and watch the fizz reveal your next favorite piece of jewelry live on TikTok.</p></FadeIn>
-    <FadeIn delay={.5}><p style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 16, fontStyle: "italic", color: C.rose, marginTop: 16, marginBottom: 32, fontWeight: 400, letterSpacing: .5 }}>Every goddess deserves a little radiance — and every starter kit holds a secret.</p></FadeIn>
     <FadeIn delay={.58}><div style={{ display: "flex", flexWrap: "wrap", gap: 14, justifyContent: "center" }}>
       <Btn primary href={LINKS.shop}>✦ &nbsp;Treat Yourself</Btn>
       <Btn href="#live">Join a Reveal Party</Btn>
     </div></FadeIn>
     <FadeIn delay={.7}><div style={{ marginTop: 48, display: "flex", gap: 24, flexWrap: "wrap", justifyContent: "center", fontFamily: "'Jost',sans-serif", fontSize: 16, fontWeight: 600, color: C.text2, letterSpacing: .5 }}>
-      {[["💎", "Be My First Diamond!"], ["🦄", "7 Unicorns Revealed"], ["⭐", "Be Part of the Journey"]].map(([i, t]) => <span key={t} style={{ display: "flex", alignItems: "center", gap: 6 }}><span style={{ fontSize: 14 }}>{i}</span>{t}</span>)}
+      {[["💎", "1 Diamond Revealed"], ["🦄", "8 Unicorns Revealed"], ["⭐", "Be Part of the Journey"]].map(([i, t]) => <span key={t} style={{ display: "flex", alignItems: "center", gap: 6 }}><span style={{ fontSize: 14 }}>{i}</span>{t}</span>)}
     </div></FadeIn>
     <div style={{ position: "absolute", bottom: 28, left: "50%", transform: "translateX(-50%)", animation: "scrollPulse 2.8s ease-in-out infinite", fontFamily: "'Jost',sans-serif", fontSize: 10, letterSpacing: 4, textTransform: "uppercase", color: C.text3 }}>scroll</div>
   </section>;
 }
 
 /* ═══════════════════════════════════════════════════
-   MANIFESTO
+   LOVEAWAYS — diamond raffle + nightly Live winners
    ═══════════════════════════════════════════════════ */
-function Manifesto() {
-  return <section style={{ padding: "32px 24px 56px", position: "relative" }}>
-    <Glow top="50%" left="50%" color={C.plum} size={500} />
-    <div style={{ maxWidth: 500, margin: "0 auto", textAlign: "center" }}>
-      <FadeIn>
-        <Label>The Goddess Glow</Label>
-        <Title>You Deserve This Moment</Title>
-        <div style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: "clamp(20px,4vw,25px)", fontStyle: "italic", fontWeight: 500, color: C.text, lineHeight: 1.9, marginTop: 24, letterSpacing: .3 }}>
-          Light a candle. Put on your favorite playlist.
-          <br />Text your girls: <em style={{ color: C.roseLight }}>"reveal party tonight."</em>
-          <br />I'm a brand new fizzer chasing my first diamond —
-          <br />and I want <em style={{ color: C.roseLight }}>you</em> here when we find it.
-          <br />This isn't just jewelry — it's your moment
-          <br />to feel <span style={{ background: C.shimmer, backgroundSize: "200% auto", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", animation: "shimmer 5s linear infinite", fontWeight: 500 }}>radiant</span>.
-        </div>
-      </FadeIn>
-      <FadeIn delay={.2}><div style={{ marginTop: 28 }}><Btn primary href={LINKS.shop} small>✦ &nbsp;You Deserve Something Beautiful</Btn></div></FadeIn>
-    </div>
-  </section>;
-}
+const IMG_LOVEAWAY_DIAMOND   = "/images/loveaways/diamond-ring-grand-prize.PNG";
+const IMG_LOVEAWAY_UNICORN_1 = "/images/loveaways/unicorn-1.jpg";
+const IMG_LOVEAWAY_UNICORN_2 = "/images/loveaways/unicorn-2.jpg";
+const IMG_LOVEAWAY_UNICORN_3 = "/images/loveaways/unicorn-3.jpg";
 
-/* ═══════════════════════════════════════════════════
-   SHOP — links to Bomb Party store
-   ═══════════════════════════════════════════════════ */
-function Shop() {
-  return <section id="order" style={{ padding: "48px 24px 64px", position: "relative" }}>
-    <Glow top="25%" left="85%" color={C.gold} size={280} />
-    <div style={{ maxWidth: 560, margin: "0 auto", textAlign: "center" }}>
-      <FadeIn>
-        <Label>Treat Yourself</Label>
-        <Title>Shop My Bomb Party Store</Title>
-        <Sub wide>I'm a brand new fizzer building my very first reveal lineup! Browse my Bomb Party store, pick your favorite collection, and I'll reveal it live on TikTok. Every piece is a radiant surprise — and one of them could be the diamond.</Sub>
-      </FadeIn>
-      <FadeIn delay={.15}>
-        <Card style={{ padding: "36px 28px", marginTop: 32, textAlign: "center" }}>
-          <ShimmerBar />
-          <div style={{ fontSize: 48, marginBottom: 16 }}>🛍️</div>
-          <div style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: "clamp(22px,5vw,30px)", fontWeight: 800, fontStyle: "italic", color: C.text, marginBottom: 10 }}>Original Bombs, Birthdays, Specials & More</div>
-          <p style={{ fontFamily: "'Jost',sans-serif", fontSize: 18, color: C.text, lineHeight: 1.7, fontWeight: 500, maxWidth: 460, margin: "0 auto 24px" }}>Starting at $19.95 — every bomb fizzes into a beautiful piece of handcrafted jewelry. Rings, necklaces, earrings, and surprises you won't expect.</p>
-          <Btn primary href={LINKS.shop}>✦ &nbsp;Browse My Store</Btn>
-          <p style={{ fontFamily: "'Jost',sans-serif", fontSize: 15, color: C.text3, marginTop: 20, fontWeight: 400, letterSpacing: .5, lineHeight: 1.6 }}>Ships in 3–5 days · 30-day quality guarantee · Handcrafted by Bomb Party, LLC</p>
-        </Card>
-      </FadeIn>
-    </div>
-  </section>;
-}
+// ⚡ Update LOVEAWAY_VERSION whenever you swap any Loveaway image so visitors see the fresh ones.
+//   Format: YYYYMMDD (e.g. "20260512" for May 12, 2026).
+const LOVEAWAY_VERSION = "20260512";
 
-/* ═══════════════════════════════════════════════════
-   DIAMOND HUNT
-   ═══════════════════════════════════════════════════ */
-function DiamondHunt() {
-  return <section id="diamond" style={{ padding: "48px 24px 64px", position: "relative" }}>
-    <Glow top="40%" left="50%" color={C.gold} size={500} />
-    <div style={{ maxWidth: 540, margin: "0 auto", textAlign: "center" }}>
-      <FadeIn>
-        <Label>The Diamond Hunt</Label>
-        <Title>Help Me Find My First Diamond</Title>
-        <Sub wide>Somewhere inside my starter kit, a real diamond is hiding. Every bomb you order brings us one fizz closer to that radiant moment — and I want you right there when we find it.</Sub>
-      </FadeIn>
-      <FadeIn delay={.15}>
-        <Card style={{ padding: "36px 28px", marginTop: 32, textAlign: "center" }}>
-          <ShimmerBar />
-          <div style={{ fontSize: 56, marginBottom: 16, animation: "driftUp 3s ease-in-out infinite, diamondGlow 4s ease-in-out infinite" }}>💎</div>
-          <div style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: "clamp(22px,5vw,32px)", fontWeight: 800, fontStyle: "italic", color: C.text, marginBottom: 8, lineHeight: 1.2 }}>The Starter Kit Diamond Quest</div>
-          <p style={{ fontFamily: "'Jost',sans-serif", fontSize: 18, color: C.text, lineHeight: 1.7, fontWeight: 500, maxWidth: 460, margin: "0 auto 20px" }}>Every Bomb Party starter kit contains a hidden diamond piece. As a brand new goddess rep, I'm fizzing through my very first kit live on TikTok — and every order you place adds to the reveal lineup. The more we fizz together, the closer we get.</p>
-          <div style={{ display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap", marginBottom: 24 }}>
-            {[["✦", "New Fizzer", "Just getting started!"], ["💎", "Diamond Status", "Hiding in the kit"], ["👑", "Goddess Goal", "Reveal it together"]].map(([icon, title, sub]) => (
-              <div key={title} style={{ flex: "1 1 120px", maxWidth: 150, padding: "16px 12px", background: `${C.rose}08`, borderRadius: 14, border: `1px solid ${C.rose}10` }}>
-                <div style={{ fontSize: 22, marginBottom: 6 }}>{icon}</div>
-                <div style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 600, fontStyle: "italic", fontSize: 16, color: C.roseLight, marginBottom: 2 }}>{title}</div>
-                <div style={{ fontFamily: "'Jost',sans-serif", fontSize: 14, color: C.text3, fontWeight: 400 }}>{sub}</div>
-              </div>))}
+const GRAND_LOVEAWAY = {
+  title: "The May Diamond Loveaway",
+  prize: "Genuine Aquamarine & Genuine Diamonds on .925 Sterling Silver with Rhodium Plating - Size 9 - RG94718D",
+  badge: "Drawing live · End of May",
+  body: "For every item in every order you've ever placed with me earns one entry. It's my thank-you for being part of this journey from the very beginning. At the end of May, I'll draw one goddess live on TikTok and she walks away with something truly rare.",
+  img: `${IMG_LOVEAWAY_DIAMOND}?v=${LOVEAWAY_VERSION}`,
+};
+
+const NIGHTLY_LOVEAWAY = {
+  title: "Nightly Live Loveaways",
+  badge: "Every Live · Goddess's Choice",
+  body: "Every Live, for every order you place that night with me, one lucky goddess gets to choose her own treasure. Pick a unicorn from the special collection, or fall in love with a dancer from the floor. It's your moment, your reveal, your choice.",
+};
+
+// UNICORN_PEEKS now have the same shape as DANCE_PIECES so each has a real identity.
+// Fill in real SKUs/names/stones/materials when ready — these are placeholder examples.
+const UNICORN_PEEKS = [
+  {
+    id: "UN00001",
+    name: "Unicorn No. 1",
+    collection: "Vault Unicorn",
+    stone: "Rare gemstone",
+    materials: "Plating TBD",
+    length: null,
+    msrp: null,
+    img: `${IMG_LOVEAWAY_UNICORN_1}?v=${LOVEAWAY_VERSION}`,
+  },
+  {
+    id: "UN00002",
+    name: "Unicorn No. 2",
+    collection: "Vault Unicorn",
+    stone: "Rare gemstone",
+    materials: "Plating TBD",
+    length: null,
+    msrp: null,
+    img: `${IMG_LOVEAWAY_UNICORN_2}?v=${LOVEAWAY_VERSION}`,
+  },
+  {
+    id: "UN00003",
+    name: "Unicorn No. 3",
+    collection: "Vault Unicorn",
+    stone: "Rare gemstone",
+    materials: "Plating TBD",
+    length: null,
+    msrp: null,
+    img: `${IMG_LOVEAWAY_UNICORN_3}?v=${LOVEAWAY_VERSION}`,
+  },
+];
+
+function Loveaways() {
+  const [zoomImg, setZoomImg] = useState(null); // { src, alt } or null
+  const [selectedUnicorn, setSelectedUnicorn] = useState(null); // index into UNICORN_PEEKS or null
+
+  // Lightbox: ESC + body scroll lock while open
+  useEffect(() => {
+    if (!zoomImg) return;
+    const onKey = (e) => { if (e.key === "Escape") setZoomImg(null); };
+    window.addEventListener("keydown", onKey);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prev;
+    };
+  }, [zoomImg]);
+
+  return (
+    <section id="loveaway-board" style={{ padding: "48px 24px 64px", position: "relative" }}>
+      <Glow top="30%" left="80%" color={C.gold} size={380} />
+      <Glow top="70%" left="20%" color={C.rose} size={320} />
+
+      <div style={{ maxWidth: 760, margin: "0 auto", textAlign: "center" }}>
+        <FadeIn>
+          <Label>Loveaways</Label>
+          <Title>Rare Pieces, Radiant Moments</Title>
+          <Sub wide>Loveaways are how I say thank you. Diamonds, unicorns, and once-in-a-while pieces given away to the goddesses who show up and celebrate with me.</Sub>
+        </FadeIn>
+
+        {/* ───── GRAND LOVEAWAY (monthly diamond) ───── */}
+        <FadeIn delay={.1}>
+          <div style={{ marginTop: 32 }}>
+            <div style={{ fontFamily: "'Jost',sans-serif", fontSize: 13, fontWeight: 700, letterSpacing: 4, textTransform: "uppercase", color: C.rose, marginBottom: 14, textAlign: "left" }}>The Grand Loveaway</div>
+
+            <Card style={{ padding: 0, overflow: "hidden" }}>
+              <ShimmerBar />
+
+              {/* Image area */}
+              <button
+                onClick={() => setZoomImg({ src: GRAND_LOVEAWAY.img, alt: GRAND_LOVEAWAY.prize })}
+                aria-label={`Open ${GRAND_LOVEAWAY.title} fullscreen`}
+                style={{
+                  width: "100%", padding: 0, border: "none", background: "#fff",
+                  cursor: "zoom-in", display: "block", position: "relative",
+                  aspectRatio: "16 / 10",
+                }}
+              >
+                <img
+                  src={GRAND_LOVEAWAY.img}
+                  alt={GRAND_LOVEAWAY.prize}
+                  loading="lazy"
+                  onError={(e) => {
+                    // Graceful placeholder if photo not yet uploaded
+                    e.currentTarget.style.display = "none";
+                    e.currentTarget.parentElement.querySelector(".placeholder").style.display = "flex";
+                  }}
+                  style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                />
+                <div className="placeholder" style={{
+                  display: "none", position: "absolute", inset: 0,
+                  background: `linear-gradient(135deg, ${C.rosePale} 0%, ${C.bgMid} 50%, ${C.goldLight}22 100%)`,
+                  alignItems: "center", justifyContent: "center", flexDirection: "column", gap: 8,
+                }}>
+                  <div style={{ fontSize: 56, animation: "diamondGlow 4s ease-in-out infinite" }}>💎</div>
+                  <div style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: "italic", fontWeight: 600, fontSize: 18, color: C.roseDark }}>Photo coming soon</div>
+                </div>
+
+                <div style={{
+                  position: "absolute", top: 14, left: 14,
+                  background: `linear-gradient(135deg, ${C.rose}, ${C.roseDark})`,
+                  color: "#fff", padding: "8px 16px", borderRadius: 50,
+                  fontFamily: "'Jost',sans-serif", fontSize: 11, fontWeight: 700,
+                  letterSpacing: 1.8, textTransform: "uppercase",
+                  boxShadow: `0 4px 14px ${C.rose}55`,
+                }}>{GRAND_LOVEAWAY.badge}</div>
+
+                <div style={{
+                  position: "absolute", top: 14, right: 14,
+                  background: "rgba(26,18,16,0.55)", backdropFilter: "blur(8px)",
+                  color: "#fff", padding: "8px 14px", borderRadius: 50,
+                  fontFamily: "'Jost',sans-serif", fontSize: 11, fontWeight: 600,
+                  letterSpacing: 1.5, textTransform: "uppercase",
+                  display: "flex", alignItems: "center", gap: 6,
+                }}>
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8" /><path d="m21 21-4.3-4.3" /><line x1="11" y1="8" x2="11" y2="14" /><line x1="8" y1="11" x2="14" y2="11" /></svg>
+                  Tap to zoom
+                </div>
+              </button>
+
+              {/* Text area */}
+              <div style={{ padding: "24px 22px 28px", textAlign: "left" }}>
+                <div style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 26, fontWeight: 800, fontStyle: "italic", color: C.text, lineHeight: 1.15, marginBottom: 6 }}>{GRAND_LOVEAWAY.title}</div>
+                <div style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 18, fontStyle: "italic", color: C.roseDark, marginBottom: 14, fontWeight: 500 }}>{GRAND_LOVEAWAY.prize}</div>
+                <p style={{ fontFamily: "'Jost',sans-serif", fontSize: 16, color: C.text2, lineHeight: 1.7, fontWeight: 400, marginBottom: 18 }}>{GRAND_LOVEAWAY.body}</p>
+
+                <div style={{
+                  display: "inline-flex", alignItems: "center", gap: 8,
+                  background: `${C.gold}10`, border: `1px solid ${C.gold}22`,
+                  borderRadius: 10, padding: "10px 14px",
+                  fontFamily: "'Jost',sans-serif", fontSize: 13, color: C.text2, fontWeight: 500,
+                }}>
+                  <span style={{ fontSize: 16 }}>✨</span>
+                  <span><strong style={{ color: C.text }}>1 entry per item per order</strong> from every purchase since the beginning</span>
+                </div>
+              </div>
+            </Card>
           </div>
-          <p style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 16, fontStyle: "italic", color: C.rose, marginBottom: 24, fontWeight: 400, letterSpacing: .3 }}>Will your bomb be the one? There's only one way to find out, goddess.</p>
-          <Btn primary href={LINKS.shop}>✦ &nbsp;Order a Bomb & Join the Hunt</Btn>
-        </Card>
-      </FadeIn>
-      <FadeIn delay={.3}>
-        <div style={{ marginTop: 24, padding: "18px 24px", background: `${C.gold}08`, border: `1px solid ${C.gold}12`, borderRadius: 18, display: "flex", alignItems: "center", gap: 14, flexWrap: "wrap", justifyContent: "center" }}>
-          <span style={{ fontSize: 24 }}>🔔</span>
-          <div style={{ textAlign: "left", flex: "1 1 200px" }}>
-            <div style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 600, fontStyle: "italic", fontSize: 16, color: C.text, marginBottom: 2 }}>Don't miss the diamond reveal</div>
-            <div style={{ fontFamily: "'Jost',sans-serif", fontSize: 15, color: C.text3, fontWeight: 400 }}>Get a text the moment we find it — be part of goddess history!</div>
+        </FadeIn>
+
+        {/* ───── NIGHTLY LIVE LOVEAWAYS ───── */}
+        <FadeIn delay={.18}>
+          <div style={{ marginTop: 32 }}>
+            <div style={{ fontFamily: "'Jost',sans-serif", fontSize: 13, fontWeight: 700, letterSpacing: 4, textTransform: "uppercase", color: C.rose, marginBottom: 14, textAlign: "left" }}>Live Loveaways</div>
+
+            <Card style={{ padding: "28px 24px 24px" }}>
+              <ShimmerBar />
+
+              <div style={{ textAlign: "left", marginBottom: 22 }}>
+                <div style={{
+                  display: "inline-block",
+                  background: `${C.plum}14`, color: C.plum, padding: "6px 14px", borderRadius: 50,
+                  fontFamily: "'Jost',sans-serif", fontSize: 11, fontWeight: 700,
+                  letterSpacing: 1.8, textTransform: "uppercase", marginBottom: 10,
+                }}>{NIGHTLY_LOVEAWAY.badge}</div>
+                <div style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 24, fontWeight: 800, fontStyle: "italic", color: C.text, lineHeight: 1.2, marginBottom: 10 }}>{NIGHTLY_LOVEAWAY.title}</div>
+                <p style={{ fontFamily: "'Jost',sans-serif", fontSize: 16, color: C.text2, lineHeight: 1.7, fontWeight: 400 }}>{NIGHTLY_LOVEAWAY.body}</p>
+              </div>
+
+              {/* Unicorn featured thumbnails */}
+              <div style={{ marginBottom: 16 }}>
+                <div style={{ fontFamily: "'Jost',sans-serif", fontSize: 12, fontWeight: 600, letterSpacing: 2, textTransform: "uppercase", color: C.text3, marginBottom: 10, textAlign: "left" }}>Featured Unicorns</div>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 10 }}>
+                  {UNICORN_PEEKS.map((u, i) => {
+                    const isSelected = selectedUnicorn === i;
+                    return (
+                      <div key={u.id} style={{ position: "relative" }}>
+                        <button
+                          onClick={() => setSelectedUnicorn(isSelected ? null : i)}
+                          aria-label={`${u.name} — show details`}
+                          style={{
+                            width: "100%", aspectRatio: "1", borderRadius: 12, padding: 0, position: "relative", overflow: "hidden",
+                            background: "#fff",
+                            border: `1.5px solid ${isSelected ? C.rose : C.rose + "22"}`,
+                            cursor: "pointer",
+                            transition: "all .35s cubic-bezier(.16,1,.3,1)",
+                            boxShadow: isSelected ? `0 6px 22px ${C.rose}33` : "0 1px 4px rgba(0,0,0,0.04)",
+                            transform: isSelected ? "translateY(-2px)" : "none",
+                          }}
+                        >
+                          <img
+                            src={u.img}
+                            alt={u.name}
+                            loading="lazy"
+                            onError={(e) => {
+                              e.currentTarget.style.display = "none";
+                              e.currentTarget.parentElement.querySelector(".unicorn-placeholder").style.display = "flex";
+                            }}
+                            style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                          />
+                          <div className="unicorn-placeholder" style={{
+                            display: "none", position: "absolute", inset: 0,
+                            background: `linear-gradient(135deg, ${C.plumLight}33, ${C.rosePale} 60%, ${C.goldLight}33)`,
+                            alignItems: "center", justifyContent: "center", flexDirection: "column", gap: 4,
+                          }}>
+                            <div style={{ fontSize: 28 }}>🦄</div>
+                            <div style={{ fontFamily: "'Jost',sans-serif", fontSize: 9, fontWeight: 600, letterSpacing: 1.5, textTransform: "uppercase", color: C.text3 }}>Soon</div>
+                          </div>
+                        </button>
+                        {/* Zoom icon, fires lightbox separately from selection */}
+                        <button
+                          onClick={(e) => { e.stopPropagation(); setZoomImg({ src: u.img, alt: u.name }); }}
+                          aria-label={`Open ${u.name} fullscreen`}
+                          style={{
+                            position: "absolute", bottom: 6, right: 6,
+                            width: 28, height: 28, borderRadius: "50%",
+                            background: "rgba(26,18,16,0.65)", backdropFilter: "blur(6px)",
+                            border: "none", cursor: "zoom-in",
+                            display: "flex", alignItems: "center", justifyContent: "center",
+                            color: "#fff",
+                            transition: "background .2s",
+                          }}
+                          onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(26,18,16,0.85)"; }}
+                          onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(26,18,16,0.65)"; }}
+                        >
+                          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8" /><path d="m21 21-4.3-4.3" /><line x1="11" y1="8" x2="11" y2="14" /><line x1="8" y1="11" x2="14" y2="11" /></svg>
+                        </button>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Selected unicorn detail card */}
+              {selectedUnicorn !== null && (
+                <FadeIn delay={.05}>
+                  <Card style={{ padding: "20px 18px", marginBottom: 16, textAlign: "left", display: "flex", gap: 16, alignItems: "center", flexWrap: "wrap", justifyContent: "center", background: `${C.plum}06`, border: `1px solid ${C.plum}22` }}>
+                    <img
+                      src={UNICORN_PEEKS[selectedUnicorn].img}
+                      alt={UNICORN_PEEKS[selectedUnicorn].name}
+                      onError={(e) => { e.currentTarget.style.opacity = "0.4"; }}
+                      style={{ width: 130, height: 130, borderRadius: 12, objectFit: "cover", flexShrink: 0, border: `1px solid ${C.plum}22` }}
+                    />
+                    <div style={{ flex: "1 1 220px", minWidth: 0 }}>
+                      <div style={{ fontFamily: "'Jost',sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: 2.5, textTransform: "uppercase", color: C.plum, marginBottom: 4 }}>🦄 {UNICORN_PEEKS[selectedUnicorn].id}</div>
+                      <div style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 22, fontWeight: 700, fontStyle: "italic", color: C.text, lineHeight: 1.15, marginBottom: 6 }}>{UNICORN_PEEKS[selectedUnicorn].name}</div>
+                      <div style={{ fontFamily: "'Jost',sans-serif", fontSize: 13, color: C.text2, lineHeight: 1.65, fontWeight: 400 }}>
+                        Collection: <strong style={{ color: C.text }}>{UNICORN_PEEKS[selectedUnicorn].collection}</strong><br />
+                        Main stone: <strong style={{ color: C.text }}>{UNICORN_PEEKS[selectedUnicorn].stone}</strong><br />
+                        Materials: {UNICORN_PEEKS[selectedUnicorn].materials}{UNICORN_PEEKS[selectedUnicorn].length ? ` · ${UNICORN_PEEKS[selectedUnicorn].length}` : ""}
+                        {UNICORN_PEEKS[selectedUnicorn].msrp != null && <><br />MSRP: <strong style={{ color: C.text }}>${UNICORN_PEEKS[selectedUnicorn].msrp}</strong></>}
+                      </div>
+                    </div>
+                  </Card>
+                </FadeIn>
+              )}
+
+              <div style={{
+                background: `${C.rose}08`, borderRadius: 12, padding: "12px 16px",
+                fontFamily: "'Jost',sans-serif", fontSize: 13, color: C.text2, lineHeight: 1.6, fontWeight: 400, textAlign: "left",
+              }}>
+                <strong style={{ color: C.text }}>How it works:</strong> Be part of a Reveal during the Live and at the end of the night, one goddess gets to choose her treasure. No worries if you need to leave the chat, you will be contacted afterwards with next steps.
+              </div>
+            </Card>
           </div>
-          <Btn primary small href={LINKS.sms}>Text JOIN</Btn>
-        </div>
-      </FadeIn>
-    </div>
-  </section>;
-}
+        </FadeIn>
 
-/* ═══════════════════════════════════════════════════
-   LIVE SCHEDULE
-   ═══════════════════════════════════════════════════ */
-function Live() {
-  const [cd, setCd] = useState("");
-  const nl = useMemo(() => new Date("2026-04-27T19:00:00-04:00"), []);
-  useEffect(() => { const tick = () => { const diff = nl - new Date(); if (diff <= 0) { setCd("OPEN PARTY"); return; } const d = Math.floor(diff / 864e5), h = Math.floor((diff % 864e5) / 36e5), m = Math.floor((diff % 36e5) / 6e4), s = Math.floor((diff % 6e4) / 1e3); setCd(`${d}d  ${h}h  ${m}m  ${s}s`); }; tick(); const iv = setInterval(tick, 1000); return () => clearInterval(iv); }, [nl]);
+        {/* ───── CTAs ───── */}
+        <FadeIn delay={.28}>
+          <p style={{ fontFamily: "'Jost',sans-serif", fontSize: 13, color: C.text3, marginTop: 22, fontWeight: 300, lineHeight: 1.65 }}>
+            Loveaways are my way of thanking the goddesses who make this community sparkle. See you on the next Live.
+          </p>
+        </FadeIn>
 
-  return <section id="live" style={{ padding: "48px 24px 64px", position: "relative" }}>
-    <div style={{ maxWidth: 560, margin: "0 auto", textAlign: "center" }}>
-      <FadeIn>
-        <Label>Reveal Parties</Label>
-        <Title>Your Next Girls' Night Starts Here</Title>
-        <Sub wide>Grab your drink, text the group chat, and tune in. It's a live reveal party on TikTok — and every goddess is invited. Check my Bomb Party page for all upcoming party dates!</Sub>
-      </FadeIn>
-      <FadeIn delay={.15}>
-        <Card style={{ padding: "38px 28px", marginTop: 32 }}>
-          <ShimmerBar />
-          <div style={{ fontFamily: "'Jost',sans-serif", fontSize: 13, color: C.rose, fontWeight: 600, letterSpacing: 3.5, textTransform: "uppercase", marginBottom: 12 }}>Second Radiant Reveal Party started</div>
-          <div style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: "clamp(36px,8vw,56px)", fontWeight: 700, fontStyle: "italic", color: C.roseLight, letterSpacing: 3, marginBottom: 14 }}>{cd}</div>
-          <div style={{ fontFamily: "'Jost',sans-serif", fontSize: 18, color: C.text, marginBottom: 24, fontWeight: 500 }}>Monday, May 11th · Follow me and keep an eye for my TikTok Live Parties!</div>
-          <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
-            <Btn primary small href={LINKS.tiktokLive}>Watch the Reveal</Btn>
-            <Btn small href={LINKS.parties}>📅 View All Parties</Btn>
+        <FadeIn delay={.32}>
+          <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap", marginTop: 20 }}>
+            <Btn primary href={LINKS.tiktok}>Catch Us on TikTok LIVE</Btn>
+            <Btn href={LINKS.parties}>See Upcoming Parties</Btn>
           </div>
-        </Card>
-      </FadeIn>
-      */
-      <FadeIn delay={.3}>
-        <div style={{ marginTop: 20, background: `${C.rose}08`, border: `1px solid ${C.rose}10`, borderRadius: 16, padding: "16px 20px", display: "flex", alignItems: "center", justifyContent: "center", gap: 12, flexWrap: "wrap" }}>
-          <span style={{ fontFamily: "'Jost',sans-serif", fontSize: 18, color: C.text, fontWeight: 500 }}>Never miss a reveal party —</span>
-          <Btn primary small href={LINKS.sms}>Text JOIN Now</Btn>
-        </div>
-      </FadeIn>
-      <FadeIn delay={.4}>
-        <a href={LINKS.tiktok} target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", alignItems: "center", gap: 8, marginTop: 20, fontFamily: "'Jost',sans-serif", fontSize: 16, color: C.rose, textDecoration: "none", fontWeight: 500, letterSpacing: .5 }}>
-          Follow @goddessradiantreveals on TikTok →
-        </a>
-      </FadeIn>
-    </div>
-  </section>;
-}
-
-/* ═══════════════════════════════════════════════════
-   HOW IT WORKS
-   ═══════════════════════════════════════════════════ */
-function HowItWorks() {
-  const steps = [
-    { n: "01", title: "Choose Your Radiance", desc: "Browse my Bomb Party store and pick from Original, Birthday, or Special collections. Each bomb holds a mystery piece chosen just for you." },
-    { n: "02", title: "Gather Your Goddesses", desc: "Text your friends, hop on TikTok, and join the live reveal party together — it's better with your girls." },
-    { n: "03", title: "Watch the Reveal", desc: "I fizz your ring bomb live in sparkling water. The anticipation builds, the jewelry appears — pure radiance." },
-    { n: "04", title: "Wear Your Sparkle", desc: "Your piece ships directly to you. Unwrap it, put it on, and let the world see your glow, goddess." },
-  ];
-  return <section id="how" style={{ padding: "48px 24px 64px", position: "relative" }}>
-    <Glow top="50%" left="12%" color={C.blush} size={320} />
-    <div style={{ maxWidth: 600, margin: "0 auto", textAlign: "center" }}>
-      <FadeIn><Label>The Goddess Experience</Label><Title>Four Steps to Radiance</Title></FadeIn>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(240px,1fr))", gap: 16, marginTop: 36 }}>
-        {steps.map((s, i) => <FadeIn key={s.n} delay={i * .1}>
-          <Card style={{ padding: "30px 24px", textAlign: "left" }}>
-            <div style={{ position: "absolute", top: 14, right: 18, fontFamily: "'Cormorant Garamond',serif", fontSize: 56, fontWeight: 700, fontStyle: "italic", color: `${C.rose}07`, lineHeight: 1 }}>{s.n}</div>
-            <div style={{ width: 36, height: 36, borderRadius: "50%", background: `${C.rose}14`, border: `1px solid ${C.rose}22`, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "'Cormorant Garamond',serif", fontSize: 15, fontWeight: 700, fontStyle: "italic", color: C.rose, marginBottom: 16 }}>{s.n}</div>
-            <div style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 800, fontStyle: "italic", fontSize: 21, color: C.text, marginBottom: 8 }}>{s.title}</div>
-            <div style={{ fontFamily: "'Jost',sans-serif", fontSize: 17, color: C.text3, lineHeight: 1.7, fontWeight: 500 }}>{s.desc}</div>
-          </Card>
-        </FadeIn>)}
+        </FadeIn>
       </div>
-      <FadeIn delay={.5}><div style={{ marginTop: 36 }}><Btn primary href={LINKS.shop}>✦ &nbsp;Begin Your Goddess Experience</Btn></div></FadeIn>
-    </div>
-  </section>;
-}
 
-/* ═══════════════════════════════════════════════════
-   COMMUNITY
-   ═══════════════════════════════════════════════════ */
-function Community() {
-  const vibes = [
-    { icon: "👯‍♀️", title: "Make New Friends", desc: "Every live reveal is a room full of women cheering each other on. You'll leave with new favorites — jewelry and friends." },
-    { icon: "🥂", title: "Girls' Night Energy", desc: "Pour the wine, light the candles, hop on the live. It's the most fun you'll have on a weeknight — guaranteed." },
-    { icon: "💝", title: "Gift a Goddess", desc: "Surprise your bestie, your mom, your sister. Order a bomb in her name and watch her face during the reveal." },
-    { icon: "✨", title: "You-Time, Radiant", desc: "Some nights it's just you, your couch, and a fizzing ring bomb. That's self-care. That's enough. You're enough." },
-  ];
-  return <section id="community" style={{ padding: "48px 24px 64px", position: "relative" }}>
-    <Glow top="30%" left="75%" color={C.plum} size={350} />
-    <div style={{ maxWidth: 600, margin: "0 auto", textAlign: "center" }}>
-      <FadeIn><Label>Your Radiant Community</Label><Title>More Than Jewelry — It's Friendship</Title><Sub wide>This isn't just shopping. It's a community of goddesses who show up for each other, hype each other, and sparkle together.</Sub></FadeIn>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(240px,1fr))", gap: 16, marginTop: 36 }}>
-        {vibes.map((v, i) => <FadeIn key={v.title} delay={i * .1}>
-          <Card style={{ padding: "28px 22px", textAlign: "center" }}>
-            <div style={{ fontSize: 34, marginBottom: 14, animation: "driftUp 4s ease-in-out infinite", animationDelay: `${i * .5}s` }}>{v.icon}</div>
-            <div style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 800, fontStyle: "italic", fontSize: 20, color: C.text, marginBottom: 8 }}>{v.title}</div>
-            <div style={{ fontFamily: "'Jost',sans-serif", fontSize: 17, color: C.text3, lineHeight: 1.7, fontWeight: 500 }}>{v.desc}</div>
-          </Card>
-        </FadeIn>)}
-      </div>
-      <FadeIn delay={.5}><div style={{ marginTop: 32 }}><Btn primary href={LINKS.tiktok}>✦ &nbsp;Join the Goddess Circle on TikTok</Btn></div></FadeIn>
-    </div>
-  </section>;
+      {/* ───── LIGHTBOX ───── */}
+      {zoomImg && (
+        <div
+          onClick={() => setZoomImg(null)}
+          role="dialog"
+          aria-modal="true"
+          aria-label={`${zoomImg.alt} fullscreen view`}
+          style={{
+            position: "fixed", inset: 0, zIndex: 1000,
+            background: "rgba(15,8,6,0.92)",
+            backdropFilter: "blur(8px)",
+            display: "flex", alignItems: "center", justifyContent: "center",
+            padding: 12, animation: "fadeIn .25s ease-out",
+          }}
+        >
+          <button
+            onClick={(e) => { e.stopPropagation(); setZoomImg(null); }}
+            aria-label="Close fullscreen view"
+            style={{
+              position: "absolute", top: 16, right: 16,
+              width: 44, height: 44, borderRadius: "50%",
+              background: "rgba(255,255,255,0.12)", border: "1px solid rgba(255,255,255,0.18)",
+              color: "#fff", fontSize: 22, lineHeight: 1, cursor: "pointer",
+              display: "flex", alignItems: "center", justifyContent: "center",
+              fontFamily: "'Jost',sans-serif", zIndex: 2,
+            }}
+          >✕</button>
+
+          <div
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              width: "100%", height: "100%",
+              overflow: "auto", WebkitOverflowScrolling: "touch",
+              display: "flex", alignItems: "center", justifyContent: "center",
+            }}
+          >
+            <img
+              src={zoomImg.src}
+              alt={zoomImg.alt}
+              style={{
+                display: "block",
+                maxWidth: "98vw", maxHeight: "92vh",
+                width: "auto", height: "auto",
+                borderRadius: 8,
+                boxShadow: "0 20px 60px rgba(0,0,0,0.5)",
+              }}
+            />
+          </div>
+
+          <div style={{
+            position: "absolute", bottom: 18, left: "50%", transform: "translateX(-50%)",
+            background: "rgba(0,0,0,0.4)", backdropFilter: "blur(8px)",
+            color: "#fff", padding: "8px 18px", borderRadius: 50,
+            fontFamily: "'Jost',sans-serif", fontSize: 12, fontWeight: 500,
+            letterSpacing: 1, textAlign: "center", opacity: .85,
+            pointerEvents: "none",
+          }}>
+            Pinch to zoom · Tap outside or press Esc to close
+          </div>
+        </div>
+      )}
+    </section>
+  );
 }
 
 /* ═══════════════════════════════════════════════════
    DANCE BOARD — featured pieces + ring tray browser
    ═══════════════════════════════════════════════════ */
 const IMG_VELVET_LUXURY     = "/images/dance-board/velvet-luxury.jpg";
+const IMG_VELVET_LUXURY_HEMATITE     = "/images/dance-board/velvet-luxury-hematite.jpg";
 const IMG_DREAM_OF_YOU      = "/images/dance-board/a-dream-of-you.jpg";
 const IMG_ELEGANT_AND_GRACE = "/images/dance-board/shes-elegant-and-grace.jpg";
 const IMG_PURE_DRAMA        = "/images/dance-board/shes-pure-drama.jpg";
@@ -359,29 +531,24 @@ const IMG_DARLING_BE_SHARP  = "/images/dance-board/darling-be-sharp.jpg";
 const IMG_SIMPLY_RADIANT    = "/images/dance-board/SimplyRadiantEarrings.png";
 
 const DANCE_PIECES = [
-  { id: "NK43201", name: "Velvet Luxury",         collection: "June 2026", stone: "Lab-Created Alexandrite",                          materials: "Gold Plating",        length: '18" + 2.5" extender', msrp: 138, status: "claimed", img: IMG_VELVET_LUXURY     },
+  { id: "NK43201", name: "Velvet Luxury",         collection: "June 2026", stone: "Lab-Created Alexandrite",                          materials: "Rhodium Plating",        length: '18" + 2.5" extender', msrp: 138, status: "available", img: IMG_VELVET_LUXURY     },
   { id: "ER41845", name: "A Dream Of You",        collection: "June 2026", stone: "Lab-Created Alexandrite",                          materials: "Rose Gold Plating",   length: null,                  msrp: 132, status: "available", img: IMG_DREAM_OF_YOU      },
   { id: "NK72620", name: "She's Elegant & Grace", collection: "June 2026", stone: "Ceramic Pearl",                                    materials: "Hematite Plating",    length: '18" + 2.5" extender', msrp: 140, status: "available", img: IMG_ELEGANT_AND_GRACE },
   { id: "RG16989", name: "She's Pure Drama",      collection: "June 2026", stone: "Lab-Created Alexandrite",                          materials: "Rhodium Plating",     length: null,                  msrp: 140, status: "available", img: IMG_PURE_DRAMA        },
-  { id: "RG61734", name: "The Serena Ring",       collection: "June 2026", stone: "Lab-Created Alexandrite",                          materials: "Rose Gold Plating",   length: null,                  msrp: 138, status: "available", img: IMG_SERENA_RING       },
+  { id: "RG61734", name: "The Serena Ring",       collection: "June 2026", stone: "Lab-Created Alexandrite",                          materials: "Rose Gold Plating",   length: null,                  msrp: 138, status: "claimed", img: IMG_SERENA_RING       },
   { id: "RG92496", name: "Darling, Be Sharp",     collection: "June 2026", stone: "Lab-Created Sapphire fused with Genuine Quartz",   materials: "Rose Gold Plating",   length: null,                  msrp: 158, status: "available", img: IMG_DARLING_BE_SHARP  },
   { id: "ER96167", name: "Simply Radiant",        collection: "June 2026", stone: "Lab-Created Ceramic Pearl",                        materials: "Gold Plating",        length: null,                  msrp: 128, status: "available", img: IMG_SIMPLY_RADIANT    },
 ];
-
-// ⚡ Bump this date string every time you replace tray photos so visitors always see the fresh ones.
-//   Format: YYYYMMDD (e.g. "20260512" for May 12, 2026).
-const TRAY_VERSION = "20260512";
 
 const RING_TRAYS = [
   {
     id: "tray-1",
     label: "Ring Dancers · Tray 1",
     caption: "Sizes 5 through 11 · rows 1 through 9",
-    thumb: `/images/dance-board/ring-tray-1.jpg?v=${TRAY_VERSION}`,
-    full:  `/images/dance-board/ring-tray-1-large.jpg?v=${TRAY_VERSION}`,
+    thumb: "/images/dance-board/ring-tray-1.jpg",
+    full:  "/images/dance-board/ring-tray-1-large.jpg",
   },
   // Drop in more trays here as you photograph them — each one renders automatically.
-  // Use the same `?v=${TRAY_VERSION}` pattern on the thumb/full paths so cache-busting works.
 ];
 
 function DanceBoard() {
@@ -606,6 +773,132 @@ function DanceBoard() {
 }
 
 /* ═══════════════════════════════════════════════════
+   SHOP — links to Bomb Party store
+   ═══════════════════════════════════════════════════ */
+function Shop() {
+  return <section id="order" style={{ padding: "48px 24px 64px", position: "relative" }}>
+    <Glow top="25%" left="85%" color={C.gold} size={280} />
+    <div style={{ maxWidth: 560, margin: "0 auto", textAlign: "center" }}>
+      <FadeIn>
+        <Label>Treat Yourself</Label>
+        <Title>Shop My Bomb Party Store</Title>
+        <Sub wide>I'm a brand new fizzer building my very first reveal lineup! Browse my Bomb Party store, pick your favorite collection, and I'll reveal it live on TikTok. Every piece is a radiant surprise — and one of them could be the diamond.</Sub>
+      </FadeIn>
+      <FadeIn delay={.15}>
+        <Card style={{ padding: "36px 28px", marginTop: 32, textAlign: "center" }}>
+          <ShimmerBar />
+          <div style={{ fontSize: 48, marginBottom: 16 }}>🛍️</div>
+          <div style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: "clamp(22px,5vw,30px)", fontWeight: 800, fontStyle: "italic", color: C.text, marginBottom: 10 }}>Original Bombs, Birthdays, Specials & More</div>
+          <p style={{ fontFamily: "'Jost',sans-serif", fontSize: 18, color: C.text, lineHeight: 1.7, fontWeight: 500, maxWidth: 460, margin: "0 auto 24px" }}>Starting at $19.95 — every bomb fizzes into a beautiful piece of handcrafted jewelry. Rings, necklaces, earrings, and surprises you won't expect.</p>
+          <Btn primary href={LINKS.shop}>✦ &nbsp;Browse My Store</Btn>
+          <p style={{ fontFamily: "'Jost',sans-serif", fontSize: 15, color: C.text3, marginTop: 20, fontWeight: 400, letterSpacing: .5, lineHeight: 1.6 }}>Ships in 3–5 days · 30-day quality guarantee · Handcrafted by Bomb Party, LLC</p>
+        </Card>
+      </FadeIn>
+    </div>
+  </section>;
+}
+
+/* ═══════════════════════════════════════════════════
+   LIVE SCHEDULE
+   ═══════════════════════════════════════════════════ */
+function Live() {
+  const [cd, setCd] = useState("");
+  const nl = useMemo(() => new Date("2026-04-27T19:00:00-04:00"), []);
+  useEffect(() => { const tick = () => { const diff = nl - new Date(); if (diff <= 0) { setCd("OPEN PARTY"); return; } const d = Math.floor(diff / 864e5), h = Math.floor((diff % 864e5) / 36e5), m = Math.floor((diff % 36e5) / 6e4), s = Math.floor((diff % 6e4) / 1e3); setCd(`${d}d  ${h}h  ${m}m  ${s}s`); }; tick(); const iv = setInterval(tick, 1000); return () => clearInterval(iv); }, [nl]);
+
+  return <section id="live" style={{ padding: "48px 24px 64px", position: "relative" }}>
+    <div style={{ maxWidth: 560, margin: "0 auto", textAlign: "center" }}>
+      <FadeIn>
+        <Label>Reveal Parties</Label>
+        <Title>Your Next Girls' Night Starts Here</Title>
+        <Sub wide>Grab your drink, text the group chat, and tune in. It's a live reveal party on TikTok — and every goddess is invited. Check my Bomb Party page for all upcoming party dates!</Sub>
+      </FadeIn>
+      <FadeIn delay={.15}>
+        <Card style={{ padding: "38px 28px", marginTop: 32 }}>
+          <ShimmerBar />
+          <div style={{ fontFamily: "'Jost',sans-serif", fontSize: 13, color: C.rose, fontWeight: 600, letterSpacing: 3.5, textTransform: "uppercase", marginBottom: 12 }}>Second Radiant Reveal Party started</div>
+          <div style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: "clamp(36px,8vw,56px)", fontWeight: 700, fontStyle: "italic", color: C.roseLight, letterSpacing: 3, marginBottom: 14 }}>{cd}</div>
+          <div style={{ fontFamily: "'Jost',sans-serif", fontSize: 18, color: C.text, marginBottom: 24, fontWeight: 500 }}>Monday, May 11th · Follow me and keep an eye for my TikTok Live Parties!</div>
+          <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
+            <Btn primary small href={LINKS.tiktokLive}>Watch the Reveal</Btn>
+            <Btn small href={LINKS.parties}>📅 View All Parties</Btn>
+          </div>
+        </Card>
+      </FadeIn>
+      */
+      <FadeIn delay={.3}>
+        <div style={{ marginTop: 20, background: `${C.rose}08`, border: `1px solid ${C.rose}10`, borderRadius: 16, padding: "16px 20px", display: "flex", alignItems: "center", justifyContent: "center", gap: 12, flexWrap: "wrap" }}>
+          <span style={{ fontFamily: "'Jost',sans-serif", fontSize: 18, color: C.text, fontWeight: 500 }}>Never miss a reveal party —</span>
+          <Btn primary small href={LINKS.sms}>Text JOIN Now</Btn>
+        </div>
+      </FadeIn>
+      <FadeIn delay={.4}>
+        <a href={LINKS.tiktok} target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", alignItems: "center", gap: 8, marginTop: 20, fontFamily: "'Jost',sans-serif", fontSize: 16, color: C.rose, textDecoration: "none", fontWeight: 500, letterSpacing: .5 }}>
+          Follow @goddessradiantreveals on TikTok →
+        </a>
+      </FadeIn>
+    </div>
+  </section>;
+}
+
+/* ═══════════════════════════════════════════════════
+   HOW IT WORKS
+   ═══════════════════════════════════════════════════ */
+function HowItWorks() {
+  const steps = [
+    { n: "01", title: "Choose Your Radiance", desc: "Browse my Bomb Party store and pick from Original, Birthday, or Special collections. Each bomb holds a mystery piece chosen just for you." },
+    { n: "02", title: "Gather Your Goddesses", desc: "Text your friends, hop on TikTok, and join the live reveal party together — it's better with your girls." },
+    { n: "03", title: "Watch the Reveal", desc: "I fizz your ring bomb live in sparkling water. The anticipation builds, the jewelry appears — pure radiance." },
+    { n: "04", title: "Wear Your Sparkle", desc: "Your piece ships directly to you. Unwrap it, put it on, and let the world see your glow, goddess." },
+  ];
+  return <section id="how" style={{ padding: "48px 24px 64px", position: "relative" }}>
+    <Glow top="50%" left="12%" color={C.blush} size={320} />
+    <div style={{ maxWidth: 600, margin: "0 auto", textAlign: "center" }}>
+      <FadeIn><Label>The Goddess Experience</Label><Title>Four Steps to Radiance</Title></FadeIn>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(240px,1fr))", gap: 16, marginTop: 36 }}>
+        {steps.map((s, i) => <FadeIn key={s.n} delay={i * .1}>
+          <Card style={{ padding: "30px 24px", textAlign: "left" }}>
+            <div style={{ position: "absolute", top: 14, right: 18, fontFamily: "'Cormorant Garamond',serif", fontSize: 56, fontWeight: 700, fontStyle: "italic", color: `${C.rose}07`, lineHeight: 1 }}>{s.n}</div>
+            <div style={{ width: 36, height: 36, borderRadius: "50%", background: `${C.rose}14`, border: `1px solid ${C.rose}22`, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "'Cormorant Garamond',serif", fontSize: 15, fontWeight: 700, fontStyle: "italic", color: C.rose, marginBottom: 16 }}>{s.n}</div>
+            <div style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 800, fontStyle: "italic", fontSize: 21, color: C.text, marginBottom: 8 }}>{s.title}</div>
+            <div style={{ fontFamily: "'Jost',sans-serif", fontSize: 17, color: C.text3, lineHeight: 1.7, fontWeight: 500 }}>{s.desc}</div>
+          </Card>
+        </FadeIn>)}
+      </div>
+      <FadeIn delay={.5}><div style={{ marginTop: 36 }}><Btn primary href={LINKS.shop}>✦ &nbsp;Begin Your Goddess Experience</Btn></div></FadeIn>
+    </div>
+  </section>;
+}
+
+/* ═══════════════════════════════════════════════════
+   COMMUNITY
+   ═══════════════════════════════════════════════════ */
+function Community() {
+  const vibes = [
+    { icon: "👯‍♀️", title: "Make New Friends", desc: "Every live reveal is a room full of women cheering each other on. You'll leave with new favorites — jewelry and friends." },
+    { icon: "🥂", title: "Girls' Night Energy", desc: "Pour the wine, light the candles, hop on the live. It's the most fun you'll have on a weeknight — guaranteed." },
+    { icon: "💝", title: "Gift a Goddess", desc: "Surprise your bestie, your mom, your sister. Order a bomb in her name and watch her face during the reveal." },
+    { icon: "✨", title: "You-Time, Radiant", desc: "Some nights it's just you, your couch, and a fizzing ring bomb. That's self-care. That's enough. You're enough." },
+  ];
+  return <section id="community" style={{ padding: "48px 24px 64px", position: "relative" }}>
+    <Glow top="30%" left="75%" color={C.plum} size={350} />
+    <div style={{ maxWidth: 600, margin: "0 auto", textAlign: "center" }}>
+      <FadeIn><Label>Your Radiant Community</Label><Title>More Than Jewelry — It's Friendship</Title><Sub wide>This isn't just shopping. It's a community of goddesses who show up for each other, hype each other, and sparkle together.</Sub></FadeIn>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(240px,1fr))", gap: 16, marginTop: 36 }}>
+        {vibes.map((v, i) => <FadeIn key={v.title} delay={i * .1}>
+          <Card style={{ padding: "28px 22px", textAlign: "center" }}>
+            <div style={{ fontSize: 34, marginBottom: 14, animation: "driftUp 4s ease-in-out infinite", animationDelay: `${i * .5}s` }}>{v.icon}</div>
+            <div style={{ fontFamily: "'Cormorant Garamond',serif", fontWeight: 800, fontStyle: "italic", fontSize: 20, color: C.text, marginBottom: 8 }}>{v.title}</div>
+            <div style={{ fontFamily: "'Jost',sans-serif", fontSize: 17, color: C.text3, lineHeight: 1.7, fontWeight: 500 }}>{v.desc}</div>
+          </Card>
+        </FadeIn>)}
+      </div>
+      <FadeIn delay={.5}><div style={{ marginTop: 32 }}><Btn primary href={LINKS.tiktok}>✦ &nbsp;Join the Goddess Circle on TikTok</Btn></div></FadeIn>
+    </div>
+  </section>;
+}
+
+/* ═══════════════════════════════════════════════════
    TEXT ALERTS
    ═══════════════════════════════════════════════════ */
 function Alerts() {
@@ -813,19 +1106,17 @@ export default function GoddessRadiantReveals() {
     <div style={{ position: "relative", zIndex: 1 }}>
       <Hero />
       <Divider />
-      <Manifesto />
+      <Loveaways />
+      <Divider />
+      <DanceBoard />
       <Divider />
       <Shop />
-      <Divider />
-      <DiamondHunt />
       <Divider />
       <Live />
       <Divider />
       <HowItWorks />
       <Divider />
       <Community />
-      <Divider />
-      <DanceBoard />
       <Divider />
       <Alerts />
       <Divider />
