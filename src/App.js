@@ -368,15 +368,20 @@ const DANCE_PIECES = [
   { id: "ER96167", name: "Simply Radiant",        collection: "June 2026", stone: "Lab-Created Ceramic Pearl",                        materials: "Gold Plating",        length: null,                  msrp: 128, status: "available", img: IMG_SIMPLY_RADIANT    },
 ];
 
+// ⚡ Bump this date string every time you replace tray photos so visitors always see the fresh ones.
+//   Format: YYYYMMDD (e.g. "20260512" for May 12, 2026).
+const TRAY_VERSION = "20260512";
+
 const RING_TRAYS = [
   {
     id: "tray-1",
     label: "Ring Dancers · Tray 1",
     caption: "Sizes 5 through 11 · rows 1 through 9",
-    thumb: "/images/dance-board/ring-tray-1.jpg",
-    full:  "/images/dance-board/ring-tray-1-large.jpg",
+    thumb: `/images/dance-board/ring-tray-1.jpg?v=${TRAY_VERSION}`,
+    full:  `/images/dance-board/ring-tray-1-large.jpg?v=${TRAY_VERSION}`,
   },
   // Drop in more trays here as you photograph them — each one renders automatically.
+  // Use the same `?v=${TRAY_VERSION}` pattern on the thumb/full paths so cache-busting works.
 ];
 
 function DanceBoard() {
