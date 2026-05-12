@@ -359,7 +359,7 @@ const IMG_DARLING_BE_SHARP  = "/images/dance-board/darling-be-sharp.jpg";
 const IMG_SIMPLY_RADIANT    = "/images/dance-board/SimplyRadiantEarrings.png";
 
 const DANCE_PIECES = [
-  { id: "NK43201", name: "Velvet Luxury",         collection: "June 2026", stone: "Lab-Created Alexandrite",                          materials: "Gold Plating",        length: '18" + 2.5" extender', msrp: 138, status: "available", img: IMG_VELVET_LUXURY     },
+  { id: "NK43201", name: "Velvet Luxury",         collection: "June 2026", stone: "Lab-Created Alexandrite",                          materials: "Gold Plating",        length: '18" + 2.5" extender', msrp: 138, status: "claimed", img: IMG_VELVET_LUXURY     },
   { id: "ER41845", name: "A Dream Of You",        collection: "June 2026", stone: "Lab-Created Alexandrite",                          materials: "Rose Gold Plating",   length: null,                  msrp: 132, status: "available", img: IMG_DREAM_OF_YOU      },
   { id: "NK72620", name: "She's Elegant & Grace", collection: "June 2026", stone: "Ceramic Pearl",                                    materials: "Hematite Plating",    length: '18" + 2.5" extender', msrp: 140, status: "available", img: IMG_ELEGANT_AND_GRACE },
   { id: "RG16989", name: "She's Pure Drama",      collection: "June 2026", stone: "Lab-Created Alexandrite",                          materials: "Rhodium Plating",     length: null,                  msrp: 140, status: "available", img: IMG_PURE_DRAMA        },
