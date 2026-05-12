@@ -522,7 +522,6 @@ function Loveaways() {
    DANCE BOARD — featured pieces + ring tray browser
    ═══════════════════════════════════════════════════ */
 const IMG_VELVET_LUXURY     = "/images/dance-board/velvet-luxury.jpg";
-const IMG_VELVET_LUXURY_HEMATITE     = "/images/dance-board/velvet-luxury-hematite.jpg";
 const IMG_DREAM_OF_YOU      = "/images/dance-board/a-dream-of-you.jpg";
 const IMG_ELEGANT_AND_GRACE = "/images/dance-board/shes-elegant-and-grace.jpg";
 const IMG_PURE_DRAMA        = "/images/dance-board/shes-pure-drama.jpg";
