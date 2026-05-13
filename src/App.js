@@ -407,7 +407,7 @@ const IMG_SIMPLY_RADIANT    = "/images/dance-board/SimplyRadiantEarrings.png";
 const IMG_GOLDEN_HIVE    = "/images/dance-board/golden-hive.png";
 
 const DANCE_PIECES = [
-  { id: "RG19611 - SIZE 8", name: "Sparkling Heart Key",     collection: "June 2026", stone: "Diamond Cubic Zirconia",   materials: ".925 Sterling Silver with Gold Plating",   length: null,                  msrp: 260, status: "available", img: IMG_SPARKLING_HEART_KEY  },
+  { id: "RG19611 - SIZE 8", name: "Sparkling Heart Key",     collection: "June 2026", stone: "Diamond Cubic Zirconia",   materials: ".925 Sterling Silver with Gold Plating",   length: null,                  msrp: 260, status: "claimed", img: IMG_SPARKLING_HEART_KEY  },
   { id: "RG76580 - SIZE 7", name: "Midnight Teardrop",     collection: "June 2026", stone: "Lab-Created Alexandrite",   materials: "Hematite Plating",   length: null,                  msrp: 128, status: "available", img: IMG_MIDNIGHT_TEARDROP  },
   { id: "RG92496 - SIZE 5", name: "Darling, Be Sharp",     collection: "June 2026", stone: "Lab-Created Sapphire fused with Genuine Quartz",   materials: "Rose Gold Plating",   length: null,                  msrp: 158, status: "available", img: IMG_DARLING_BE_SHARP  },
   { id: "RG16989 - SIZE 7", name: "She's Pure Drama",      collection: "June 2026", stone: "Lab-Created Alexandrite",                          materials: "Rhodium Plating",     length: null,                  msrp: 140, status: "available", img: IMG_PURE_DRAMA        },
