@@ -154,7 +154,7 @@ function Hero() {
 /* ═══════════════════════════════════════════════════
    LOVEAWAYS — diamond raffle + nightly Live winners
    ═══════════════════════════════════════════════════ */
-const IMG_LOVEAWAY_DIAMOND   = "/images/loveaways/diamond-ring-grand-prize.PNG";
+const IMG_LOVEAWAY_DIAMOND   = "/images/loveaways/diamond-ring-grand-prize.png";
 
 // ⚡ Update LOVEAWAY_VERSION whenever you swap any Loveaway image so visitors see the fresh ones.
 //   Format: YYYYMMDD (e.g. "20260512" for May 12, 2026).
@@ -395,16 +395,16 @@ function Loveaways() {
    DANCE BOARD — featured pieces + ring tray browser
    ═══════════════════════════════════════════════════ */
 
-const IMG_SPARKLING_HEART_KEY     = "/images/dance-board/sparkling-heart-key.PNG";
-const IMG_MIDNIGHT_TEARDROP     = "/images/dance-board/midnight-teardrop.PNG";
-const IMG_VELVET_LUXURY_HEMATITE     = "/images/dance-board/velvet-luxury-hematite.PNG";
+const IMG_SPARKLING_HEART_KEY     = "/images/dance-board/sparkling-heart-key.png";
+const IMG_MIDNIGHT_TEARDROP     = "/images/dance-board/midnight-teardrop.png";
+const IMG_VELVET_LUXURY_HEMATITE     = "/images/dance-board/velvet-luxury-hematite.png";
 const IMG_DREAM_OF_YOU      = "/images/dance-board/a-dream-of-you.jpg";
 const IMG_ELEGANT_AND_GRACE = "/images/dance-board/shes-elegant-and-grace.jpg";
 const IMG_PURE_DRAMA        = "/images/dance-board/shes-pure-drama.jpg";
 const IMG_SERENA_RING       = "/images/dance-board/the-serena-ring.jpg";
 const IMG_DARLING_BE_SHARP  = "/images/dance-board/darling-be-sharp.jpg";
 const IMG_SIMPLY_RADIANT    = "/images/dance-board/SimplyRadiantEarrings.png";
-const IMG_GOLDEN_HIVE    = "/images/dance-board/golden-hive.PNG";
+const IMG_GOLDEN_HIVE    = "/images/dance-board/golden-hive.png";
 
 const DANCE_PIECES = [
   { id: "RG19611 - SIZE 8", name: "Sparkling Heart Key",     collection: "June 2026", stone: "Diamond Cubic Zirconia",   materials: ".925 Sterling Silver with Gold Plating",   length: null,                  msrp: 260, status: "available", img: IMG_SPARKLING_HEART_KEY  },
