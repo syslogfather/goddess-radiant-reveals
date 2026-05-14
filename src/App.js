@@ -155,6 +155,11 @@ function Hero() {
    LOVEAWAYS — diamond raffle + nightly Live winners
    ═══════════════════════════════════════════════════ */
 const IMG_LOVEAWAY_DIAMOND   = "/images/loveaways/diamond-ring-grand-prize.png";
+const IMG_LOVEAWAY_UNICORN_1 = "/images/loveaways/unicorn-shes-the-moment.png";
+const IMG_LOVEAWAY_UNICORN_2 = "/images/loveaways/unicorn-art-deco-dreaming-new.png";
+const IMG_LOVEAWAY_UNICORN_3 = "/images/loveaways/unicorn-celestial-new.png";
+const IMG_LOVEAWAY_UNICORN_4 = "/images/loveaways/unicorn-a-perfect-moment.png";
+const IMG_LOVEAWAY_UNICORN_5 = "/images/loveaways/unicorn-high-roller-sparkle.png";
 
 // ⚡ Update LOVEAWAY_VERSION whenever you swap any Loveaway image so visitors see the fresh ones.
 //   Format: YYYYMMDD (e.g. "20260512" for May 12, 2026).
@@ -174,8 +179,59 @@ const NIGHTLY_LOVEAWAY = {
   body: "Every Live, for every order you place that night with me, one lucky goddess gets to choose her own treasure. Pick a unicorn from the special collection, or fall in love with a dancer from the floor. It's your moment, your reveal, your choice.",
 };
 
+// UNICORN_PEEKS now have the same shape as DANCE_PIECES so each has a real identity.
+// Fill in real SKUs/names/stones/materials when ready — these are placeholder examples.
+const UNICORN_PEEKS = [
+  {
+    id: "RG91403",
+    name: "She's The Moment - Size 8",
+    rarity: "Only 1 of 250 Made",
+    stone: "Lab-Created Sapphire Fused with Genuine Quartz",
+    materials: "Rhodium Plating",
+    msrp: "$180",
+    img: `${IMG_LOVEAWAY_UNICORN_1}?v=${LOVEAWAY_VERSION}`,
+  },
+  {
+    id: "NK59753",
+    name: "Art Deco Dreaming",
+    rarity: "Only 1 of 500 Made",
+    stone: "Lab-Created Emerald",
+    materials: "Rhodium Plating",
+    msrp: "$188",
+    img: `${IMG_LOVEAWAY_UNICORN_2}?v=${LOVEAWAY_VERSION}`,
+  },
+  {
+    id: "NK15018",
+    name: "A Celestial Centerpiece",
+    rarity: "Only 1 of 500 Made",
+    stone: "Diamond Cubic Zirconia",
+    materials: "Hematite Plating",
+    msrp: "$168",
+    img: `${IMG_LOVEAWAY_UNICORN_3}?v=${LOVEAWAY_VERSION}`,
+  },
+  {
+    id: "NK26612",
+    name: "A Perfect Moment",
+    rarity: "Only 1 of 250 Made",
+    stone: "Gradient of Pink Ombre Cubic Zirconia",
+    materials: "Rose Gold Plating",
+    msrp: "$132",
+    img: `${IMG_LOVEAWAY_UNICORN_4}?v=${LOVEAWAY_VERSION}`,
+  },
+  {
+    id: "NK62555G",
+    name: "High Roller Sparkle",
+    rarity: "Only 1 of 250 Made",
+    stone: "Diamond Cubic Zirconia",
+    materials: ".925 Sterling Silver with Gold Plating",
+    msrp: "$290",
+    img: `${IMG_LOVEAWAY_UNICORN_5}?v=${LOVEAWAY_VERSION}`,
+  },
+];
+
 function Loveaways() {
   const [zoomImg, setZoomImg] = useState(null); // { src, alt } or null
+  const [selectedUnicorn, setSelectedUnicorn] = useState(null); // index into UNICORN_PEEKS or null
 
   // Lightbox: ESC + body scroll lock while open
   useEffect(() => {
@@ -300,6 +356,94 @@ function Loveaways() {
                 <div style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 24, fontWeight: 800, fontStyle: "italic", color: C.text, lineHeight: 1.2, marginBottom: 10 }}>{NIGHTLY_LOVEAWAY.title}</div>
                 <p style={{ fontFamily: "'Jost',sans-serif", fontSize: 16, color: C.text2, lineHeight: 1.7, fontWeight: 400 }}>{NIGHTLY_LOVEAWAY.body}</p>
               </div>
+
+              {/* Unicorn featured thumbnails */}
+              <div style={{ marginBottom: 16 }}>
+                <div style={{ fontFamily: "'Jost',sans-serif", fontSize: 12, fontWeight: 600, letterSpacing: 2, textTransform: "uppercase", color: C.text3, marginBottom: 10, textAlign: "left" }}>Featured Unicorns</div>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 10 }}>
+                  {UNICORN_PEEKS.map((u, i) => {
+                    const isSelected = selectedUnicorn === i;
+                    return (
+                      <div key={u.id} style={{ position: "relative" }}>
+                        <button
+                          onClick={() => setSelectedUnicorn(isSelected ? null : i)}
+                          aria-label={`${u.name} — show details`}
+                          style={{
+                            width: "100%", aspectRatio: "1", borderRadius: 12, padding: 0, position: "relative", overflow: "hidden",
+                            background: "#fff",
+                            border: `1.5px solid ${isSelected ? C.rose : C.rose + "22"}`,
+                            cursor: "pointer",
+                            transition: "all .35s cubic-bezier(.16,1,.3,1)",
+                            boxShadow: isSelected ? `0 6px 22px ${C.rose}33` : "0 1px 4px rgba(0,0,0,0.04)",
+                            transform: isSelected ? "translateY(-2px)" : "none",
+                          }}
+                        >
+                          <img
+                            src={u.img}
+                            alt={u.name}
+                            loading="lazy"
+                            onError={(e) => {
+                              e.currentTarget.style.display = "none";
+                              e.currentTarget.parentElement.querySelector(".unicorn-placeholder").style.display = "flex";
+                            }}
+                            style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                          />
+                          <div className="unicorn-placeholder" style={{
+                            display: "none", position: "absolute", inset: 0,
+                            background: `linear-gradient(135deg, ${C.plumLight}33, ${C.rosePale} 60%, ${C.goldLight}33)`,
+                            alignItems: "center", justifyContent: "center", flexDirection: "column", gap: 4,
+                          }}>
+                            <div style={{ fontSize: 28 }}>🦄</div>
+                            <div style={{ fontFamily: "'Jost',sans-serif", fontSize: 9, fontWeight: 600, letterSpacing: 1.5, textTransform: "uppercase", color: C.text3 }}>Soon</div>
+                          </div>
+                        </button>
+                        {/* Zoom icon, fires lightbox separately from selection */}
+                        <button
+                          onClick={(e) => { e.stopPropagation(); setZoomImg({ src: u.img, alt: u.name }); }}
+                          aria-label={`Open ${u.name} fullscreen`}
+                          style={{
+                            position: "absolute", bottom: 6, right: 6,
+                            width: 28, height: 28, borderRadius: "50%",
+                            background: "rgba(26,18,16,0.65)", backdropFilter: "blur(6px)",
+                            border: "none", cursor: "zoom-in",
+                            display: "flex", alignItems: "center", justifyContent: "center",
+                            color: "#fff",
+                            transition: "background .2s",
+                          }}
+                          onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(26,18,16,0.85)"; }}
+                          onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(26,18,16,0.65)"; }}
+                        >
+                          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8" /><path d="m21 21-4.3-4.3" /><line x1="11" y1="8" x2="11" y2="14" /><line x1="8" y1="11" x2="14" y2="11" /></svg>
+                        </button>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Selected unicorn detail card */}
+              {selectedUnicorn !== null && (
+                <FadeIn delay={.05}>
+                  <Card style={{ padding: "20px 18px", marginBottom: 16, textAlign: "left", display: "flex", gap: 16, alignItems: "center", flexWrap: "wrap", justifyContent: "center", background: `${C.plum}06`, border: `1px solid ${C.plum}22` }}>
+                    <img
+                      src={UNICORN_PEEKS[selectedUnicorn].img}
+                      alt={UNICORN_PEEKS[selectedUnicorn].name}
+                      onError={(e) => { e.currentTarget.style.opacity = "0.4"; }}
+                      style={{ width: 130, height: 130, borderRadius: 12, objectFit: "cover", flexShrink: 0, border: `1px solid ${C.plum}22` }}
+                    />
+                    <div style={{ flex: "1 1 220px", minWidth: 0 }}>
+                      <div style={{ fontFamily: "'Jost',sans-serif", fontSize: 11, fontWeight: 700, letterSpacing: 2.5, textTransform: "uppercase", color: C.plum, marginBottom: 4 }}>🦄 {UNICORN_PEEKS[selectedUnicorn].id}</div>
+                      <div style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 22, fontWeight: 700, fontStyle: "italic", color: C.text, lineHeight: 1.15, marginBottom: 6 }}>{UNICORN_PEEKS[selectedUnicorn].name}</div>
+                      <div style={{ fontFamily: "'Jost',sans-serif", fontSize: 13, color: C.text2, lineHeight: 1.65, fontWeight: 400 }}>
+                        Collection: <strong style={{ color: C.text }}>{UNICORN_PEEKS[selectedUnicorn].collection}</strong><br />
+                        Main stone: <strong style={{ color: C.text }}>{UNICORN_PEEKS[selectedUnicorn].stone}</strong><br />
+                        Materials: {UNICORN_PEEKS[selectedUnicorn].materials}{UNICORN_PEEKS[selectedUnicorn].length ? ` · ${UNICORN_PEEKS[selectedUnicorn].length}` : ""}
+                        {UNICORN_PEEKS[selectedUnicorn].msrp != null && <><br />MSRP: <strong style={{ color: C.text }}>${UNICORN_PEEKS[selectedUnicorn].msrp}</strong></>}
+                      </div>
+                    </div>
+                  </Card>
+                </FadeIn>
+              )}
 
               <div style={{
                 background: `${C.rose}08`, borderRadius: 12, padding: "12px 16px",
