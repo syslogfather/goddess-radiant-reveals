@@ -97,7 +97,7 @@ function Nav({ onMenu }) {
   return <nav style={{ position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, padding: "13px 20px", display: "flex", alignItems: "center", justifyContent: "space-between", background: s ? `${C.bg}ee` : "transparent", backdropFilter: s ? "blur(18px)" : "none", transition: "all .4s", borderBottom: s ? `1px solid ${C.rose}10` : "1px solid transparent" }}>
     <span style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 18, fontWeight: 700, fontStyle: "italic", color: C.roseDark, letterSpacing: 1 }}>Goddess Radiant</span>
     <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
-      <Btn primary small href={LINKS.shop}>Treat Yourself</Btn>
+      <Btn primary small href={LINKS.shop}>Order Here</Btn>
       <button onClick={onMenu} style={{ background: "none", border: `1px solid ${C.rose}22`, color: C.roseLight, width: 40, height: 40, borderRadius: 12, cursor: "pointer", fontSize: 15, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "'Jost',sans-serif" }}>☰</button>
     </div>
   </nav>;
@@ -141,8 +141,7 @@ function Hero() {
     <FadeIn delay={.3}><h1 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: "clamp(48px,12vw,88px)", fontWeight: 700, fontStyle: "italic", color: C.text, margin: "0 0 12px", lineHeight: 1.02, letterSpacing: 1 }}>Reveals</h1></FadeIn>
     <FadeIn delay={.36}><Flourish w={85} o={.3} style={{ margin: "0 auto 30px" }} /></FadeIn>
     <FadeIn delay={.58}><div style={{ display: "flex", flexWrap: "wrap", gap: 14, justifyContent: "center" }}>
-      <Btn primary href={LINKS.shop}>✦ &nbsp;Treat Yourself</Btn>
-      <Btn href="#live">Join a Reveal Party</Btn>
+      <Btn primary href={LINKS.shop}>✦ &nbsp;Order Here</Btn>
     </div></FadeIn>
     <FadeIn delay={.7}><div style={{ marginTop: 48, display: "flex", gap: 24, flexWrap: "wrap", justifyContent: "center", fontFamily: "'Jost',sans-serif", fontSize: 16, fontWeight: 600, color: C.text2, letterSpacing: .5 }}>
       {[["💎", "1 Diamond Revealed"], ["🦄", "8 Unicorns Revealed"], ["⭐", "Be Part of the Journey"]].map(([i, t]) => <span key={t} style={{ display: "flex", alignItems: "center", gap: 6 }}><span style={{ fontSize: 14 }}>{i}</span>{t}</span>)}
@@ -247,7 +246,7 @@ function Loveaways() {
   }, [zoomImg]);
 
   return (
-    <section id="loveaway-board" style={{ padding: "48px 24px 64px", position: "relative" }}>
+    <section id="loveaway-board" style={{ padding: "48px 24px 64px", position: "relative", scrollMarginTop: 80 }}>
       <Glow top="30%" left="80%" color={C.gold} size={380} />
       <Glow top="70%" left="20%" color={C.rose} size={320} />
 
@@ -596,7 +595,7 @@ function DanceBoard() {
   useEffect(() => { if (zoomTray !== null) setZoomed(false); }, [zoomTray]);
 
   return (
-    <section id="dance-board" style={{ padding: "48px 24px 64px", position: "relative" }}>
+    <section id="dance-board" style={{ padding: "48px 24px 64px", position: "relative", scrollMarginTop: 80 }}>
       <Glow top="35%" left="20%" color={C.gold} size={340} />
       <Glow top="65%" left="80%" color={C.plum} size={280} />
       <div style={{ maxWidth: 760, margin: "0 auto", textAlign: "center" }}>
@@ -800,11 +799,11 @@ function DanceBoard() {
    SHOP — links to Bomb Party store
    ═══════════════════════════════════════════════════ */
 function Shop() {
-  return <section id="order" style={{ padding: "48px 24px 64px", position: "relative" }}>
+  return <section id="order" style={{ padding: "48px 24px 64px", position: "relative", scrollMarginTop: 80 }}>
     <Glow top="25%" left="85%" color={C.gold} size={280} />
     <div style={{ maxWidth: 560, margin: "0 auto", textAlign: "center" }}>
       <FadeIn>
-        <Label>Treat Yourself</Label>
+        <Label>Order Here</Label>
         <Title>Shop My Bomb Party Store</Title>
         <Sub wide>I'm a brand new fizzer building my very first reveal lineup! Browse my Bomb Party store, pick your favorite collection, and I'll reveal it live on TikTok. Every piece is a radiant surprise — and one of them could be the diamond.</Sub>
       </FadeIn>
@@ -830,7 +829,7 @@ function Live() {
   const nl = useMemo(() => new Date("2026-04-27T19:00:00-04:00"), []);
   useEffect(() => { const tick = () => { const diff = nl - new Date(); if (diff <= 0) { setCd("OPEN PARTY"); return; } const d = Math.floor(diff / 864e5), h = Math.floor((diff % 864e5) / 36e5), m = Math.floor((diff % 36e5) / 6e4), s = Math.floor((diff % 6e4) / 1e3); setCd(`${d}d  ${h}h  ${m}m  ${s}s`); }; tick(); const iv = setInterval(tick, 1000); return () => clearInterval(iv); }, [nl]);
 
-  return <section id="live" style={{ padding: "48px 24px 64px", position: "relative" }}>
+  return <section id="live" style={{ padding: "48px 24px 64px", position: "relative", scrollMarginTop: 80 }}>
     <div style={{ maxWidth: 560, margin: "0 auto", textAlign: "center" }}>
       <FadeIn>
         <Label>Reveal Parties</Label>
@@ -849,7 +848,6 @@ function Live() {
           </div>
         </Card>
       </FadeIn>
-      */
       <FadeIn delay={.3}>
         <div style={{ marginTop: 20, background: `${C.rose}08`, border: `1px solid ${C.rose}10`, borderRadius: 16, padding: "16px 20px", display: "flex", alignItems: "center", justifyContent: "center", gap: 12, flexWrap: "wrap" }}>
           <span style={{ fontFamily: "'Jost',sans-serif", fontSize: 18, color: C.text, fontWeight: 500 }}>Never miss a reveal party —</span>
@@ -875,7 +873,7 @@ function HowItWorks() {
     { n: "03", title: "Watch the Reveal", desc: "I fizz your ring bomb live in sparkling water. The anticipation builds, the jewelry appears — pure radiance." },
     { n: "04", title: "Wear Your Sparkle", desc: "Your piece ships directly to you. Unwrap it, put it on, and let the world see your glow, goddess." },
   ];
-  return <section id="how" style={{ padding: "48px 24px 64px", position: "relative" }}>
+  return <section id="how" style={{ padding: "48px 24px 64px", position: "relative", scrollMarginTop: 80 }}>
     <Glow top="50%" left="12%" color={C.blush} size={320} />
     <div style={{ maxWidth: 600, margin: "0 auto", textAlign: "center" }}>
       <FadeIn><Label>The Goddess Experience</Label><Title>Four Steps to Radiance</Title></FadeIn>
@@ -904,7 +902,7 @@ function Community() {
     { icon: "💝", title: "Gift a Goddess", desc: "Surprise your bestie, your mom, your sister. Order a bomb in her name and watch her face during the reveal." },
     { icon: "✨", title: "You-Time, Radiant", desc: "Some nights it's just you, your couch, and a fizzing ring bomb. That's self-care. That's enough. You're enough." },
   ];
-  return <section id="community" style={{ padding: "48px 24px 64px", position: "relative" }}>
+  return <section id="community" style={{ padding: "48px 24px 64px", position: "relative", scrollMarginTop: 80 }}>
     <Glow top="30%" left="75%" color={C.plum} size={350} />
     <div style={{ maxWidth: 600, margin: "0 auto", textAlign: "center" }}>
       <FadeIn><Label>Your Radiant Community</Label><Title>More Than Jewelry — It's Friendship</Title><Sub wide>This isn't just shopping. It's a community of goddesses who show up for each other, hype each other, and sparkle together.</Sub></FadeIn>
@@ -989,7 +987,7 @@ function Contact() {
 
   const errStyle = { fontFamily: "'Jost',sans-serif", fontSize: 13, color: C.error, marginTop: 4, textAlign: "left", fontWeight: 400 };
 
-  return <section id="contact" style={{ padding: "48px 24px 64px", position: "relative" }}>
+  return <section id="contact" style={{ padding: "48px 24px 64px", position: "relative", scrollMarginTop: 80 }}>
     <Glow top="50%" left="50%" color={C.rose} size={350} />
     <div style={{ maxWidth: 480, margin: "0 auto", textAlign: "center" }}>
       <FadeIn>
@@ -1050,7 +1048,7 @@ function Privacy() {
     { title: "Contact Me", body: `If you have any questions about this privacy policy or how your data is handled, please email me directly at ${LINKS.email}.` },
   ];
 
-  return <section id="privacy" style={{ padding: "48px 24px 64px" }}>
+  return <section id="privacy" style={{ padding: "48px 24px 64px", scrollMarginTop: 80 }}>
     <div style={{ maxWidth: 600, margin: "0 auto" }}>
       <FadeIn>
         <div style={{ textAlign: "center" }}>
@@ -1100,7 +1098,7 @@ function Footer() {
         <a href={LINKS.parties} target="_blank" rel="noopener noreferrer" style={{ fontFamily: "'Jost',sans-serif", fontSize: 15, color: C.rose, textDecoration: "none", fontWeight: 500 }}>Parties</a>
       </div>
       <div style={{ background: `${C.rose}0c`, borderRadius: 14, padding: "16px 20px", marginBottom: 28, fontFamily: "'Jost',sans-serif", fontSize: 13, color: C.text3, lineHeight: 1.7, fontWeight: 500 }}>All jewelry is designed and manufactured by Bomb Party, LLC. As an independent rep, I sell Bomb Party products through their platform. Revealed pieces may be won during live giveaways or redeemed with loyalty points.</div>
-      <Btn primary small href={LINKS.shop}>✦ &nbsp;Treat Yourself, Goddess</Btn>
+      <Btn primary small href={LINKS.shop}>✦ &nbsp;Order Here, Goddess</Btn>
       <p style={{ fontFamily: "'Jost',sans-serif", fontSize: 13, color: C.text3, marginTop: 28, fontWeight: 300, letterSpacing: .5 }}>© 2026 Goddess Radiant Reveals · Independent Bomb Party Rep</p>
     </div>
   </footer>;
@@ -1113,7 +1111,7 @@ function StickyCTA() {
   const [show, setShow] = useState(false);
   useEffect(() => { const h = () => setShow(window.scrollY > 500); window.addEventListener("scroll", h, { passive: true }); return () => window.removeEventListener("scroll", h); }, []);
   return <div style={{ position: "fixed", bottom: 0, left: 0, right: 0, zIndex: 90, padding: "14px 20px", background: `${C.bg}f0`, backdropFilter: "blur(18px)", borderTop: `1px solid ${C.rose}18`, display: "flex", justifyContent: "center", transform: show ? "translateY(0)" : "translateY(100%)", transition: "transform .5s cubic-bezier(.16,1,.3,1)" }}>
-    <Btn primary full href={LINKS.shop} sx={{ maxWidth: 380 }}>✦ &nbsp;Treat Yourself, Goddess</Btn>
+    <Btn primary full href={LINKS.shop} sx={{ maxWidth: 380 }}>✦ &nbsp;Order Here, Goddess</Btn>
   </div>;
 }
 
@@ -1122,7 +1120,33 @@ function StickyCTA() {
    ═══════════════════════════════════════════════════ */
 export default function GoddessRadiantReveals() {
   const [menuOpen, setMenuOpen] = useState(false);
-  return <div style={{ background: C.bg, minHeight: "100vh", position: "relative", overflow: "hidden" }}>
+
+  // Handle hash deep-links (e.g. /#loveaway-board) — needed because React renders
+  // the page AFTER the browser tries to jump to the anchor on initial load.
+  useEffect(() => {
+    const scrollToHash = () => {
+      if (!window.location.hash) return;
+      const id = window.location.hash.slice(1);
+      // Try several times as images load and layout shifts; gives React time to render.
+      let tries = 0;
+      const attempt = () => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth", block: "start" });
+        } else if (tries++ < 10) {
+          setTimeout(attempt, 100);
+        }
+      };
+      attempt();
+    };
+    // Initial load (after mount)
+    scrollToHash();
+    // Also respond if user clicks an internal link
+    window.addEventListener("hashchange", scrollToHash);
+    return () => window.removeEventListener("hashchange", scrollToHash);
+  }, []);
+
+  return <div style={{ background: C.bg, minHeight: "100vh", position: "relative", overflowX: "clip" }}>
     <style>{css}</style>
     <Sparkles />
     <Nav onMenu={() => setMenuOpen(true)} />
