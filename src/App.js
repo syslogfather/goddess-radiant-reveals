@@ -153,7 +153,7 @@ function Hero() {
 /* ═══════════════════════════════════════════════════
    LOVEAWAYS — diamond raffle + nightly Live winners
    ═══════════════════════════════════════════════════ */
-const IMG_LOVEAWAY_DIAMOND   = "/images/loveaways/diamond-ring-grand-prize.png";
+const IMG_LOVEAWAY_DIAMOND = "/images/loveaways/unicorn-1.jpg";
 const IMG_LOVEAWAY_UNICORN_1 = "/images/loveaways/unicorn-shes-the-moment.png";
 const IMG_LOVEAWAY_UNICORN_2 = "/images/loveaways/unicorn-art-deco-dreaming-new.png";
 const IMG_LOVEAWAY_UNICORN_3 = "/images/loveaways/unicorn-celestial-new.png";
@@ -165,10 +165,10 @@ const IMG_LOVEAWAY_UNICORN_5 = "/images/loveaways/unicorn-high-roller-sparkle.pn
 const LOVEAWAY_VERSION = "20260512";
 
 const GRAND_LOVEAWAY = {
-  title: "The May Diamond Loveaway",
-  prize: "Genuine Aquamarine & Genuine Diamonds on .925 Sterling Silver with Rhodium Plating - Size 9 - RG94718D",
-  badge: "Drawing live · End of May",
-  body: "For every item in every order you've ever placed with me earns one entry. It's my thank-you for being part of this journey from the very beginning. At the end of May, I'll draw one goddess live on TikTok and she walks away with something truly rare.",
+  title: "The June Grand Loveaway - Coming soon!",
+  prize: "Info coming soon.",
+  badge: "Info coming soon.",
+  body: "Info coming soon.",
   img: `${IMG_LOVEAWAY_DIAMOND}?v=${LOVEAWAY_VERSION}`,
 };
 
@@ -329,8 +329,6 @@ function Loveaways() {
                   borderRadius: 10, padding: "10px 14px",
                   fontFamily: "'Jost',sans-serif", fontSize: 13, color: C.text2, fontWeight: 500,
                 }}>
-                  <span style={{ fontSize: 16 }}>✨</span>
-                  <span><strong style={{ color: C.text }}>1 entry per item per order</strong> from every purchase since the beginning</span>
                 </div>
               </div>
             </Card>
