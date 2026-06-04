@@ -144,7 +144,7 @@ function Hero() {
       <Btn primary href={LINKS.shop}>✦ &nbsp;Order Here</Btn>
     </div></FadeIn>
     <FadeIn delay={.7}><div style={{ marginTop: 48, display: "flex", gap: 24, flexWrap: "wrap", justifyContent: "center", fontFamily: "'Jost',sans-serif", fontSize: 16, fontWeight: 600, color: C.text2, letterSpacing: .5 }}>
-      {[["💎", "1 Diamond Revealed"], ["🦄", "8 Unicorns Revealed"], ["⭐", "Be Part of the Journey"]].map(([i, t]) => <span key={t} style={{ display: "flex", alignItems: "center", gap: 6 }}><span style={{ fontSize: 14 }}>{i}</span>{t}</span>)}
+      {[["💎", "1 Diamond Revealed"], ["🦄", "17 Unicorns Revealed"], ["⭐", "Be Part of the Journey"]].map(([i, t]) => <span key={t} style={{ display: "flex", alignItems: "center", gap: 6 }}><span style={{ fontSize: 14 }}>{i}</span>{t}</span>)}
     </div></FadeIn>
     <div style={{ position: "absolute", bottom: 28, left: "50%", transform: "translateX(-50%)", animation: "scrollPulse 2.8s ease-in-out infinite", fontFamily: "'Jost',sans-serif", fontSize: 10, letterSpacing: 4, textTransform: "uppercase", color: C.text3 }}>scroll</div>
   </section>;
@@ -549,25 +549,25 @@ const IMG_GOLDEN_HIVE    = "/images/dance-board/golden-hive.png";
 
 const DANCE_PIECES = [
   { id: "RG19611 - SIZE 8", name: "Sparkling Heart Key",     collection: "June 2026", stone: "Diamond Cubic Zirconia",   materials: ".925 Sterling Silver with Gold Plating",   length: null,                  msrp: 260, status: "claimed", img: IMG_SPARKLING_HEART_KEY  },
-  { id: "RG76580 - SIZE 7", name: "Midnight Teardrop",     collection: "June 2026", stone: "Lab-Created Alexandrite",   materials: "Hematite Plating",   length: null,                  msrp: 128, status: "available", img: IMG_MIDNIGHT_TEARDROP  },
-  { id: "RG92496 - SIZE 5", name: "Darling, Be Sharp",     collection: "June 2026", stone: "Lab-Created Sapphire fused with Genuine Quartz",   materials: "Rose Gold Plating",   length: null,                  msrp: 158, status: "available", img: IMG_DARLING_BE_SHARP  },
-  { id: "RG16989 - SIZE 7", name: "She's Pure Drama",      collection: "June 2026", stone: "Lab-Created Alexandrite",                          materials: "Rhodium Plating",     length: null,                  msrp: 140, status: "available", img: IMG_PURE_DRAMA        },
+  { id: "RG76580 - SIZE 7", name: "Midnight Teardrop",     collection: "June 2026", stone: "Lab-Created Alexandrite",   materials: "Hematite Plating",   length: null,                  msrp: 128, status: "claimed", img: IMG_MIDNIGHT_TEARDROP  },
+  { id: "RG92496 - SIZE 5", name: "Darling, Be Sharp",     collection: "June 2026", stone: "Lab-Created Sapphire fused with Genuine Quartz",   materials: "Rose Gold Plating",   length: null,                  msrp: 158, status: "claimed", img: IMG_DARLING_BE_SHARP  },
+  { id: "RG16989 - SIZE 7", name: "She's Pure Drama",      collection: "June 2026", stone: "Lab-Created Alexandrite",                          materials: "Rhodium Plating",     length: null,                  msrp: 140, status: "claimed", img: IMG_PURE_DRAMA        },
   { id: "RG61734", name: "The Serena Ring",       collection: "June 2026", stone: "Lab-Created Alexandrite",                          materials: "Rose Gold Plating",   length: null,                  msrp: 138, status: "claimed", img: IMG_SERENA_RING       },
-  { id: "NK43201", name: "Velvet Luxury",         collection: "June 2026", stone: "Lab-Created Alexandrite",                          materials: "Rhodium Plating",        length: '18" + 2.5" extender', msrp: 138, status: "available", img: IMG_VELVET_LUXURY_HEMATITE     },
-  { id: "NK43201", name: "Velvet Luxury",         collection: "June 2026", stone: "Lab-Created Alexandrite",                          materials: "Hematite Plating",        length: '18" + 2.5" extender', msrp: 138, status: "available", img: IMG_VELVET_LUXURY_HEMATITE     },
-  { id: "NK72620", name: "She's Elegant & Grace", collection: "June 2026", stone: "Ceramic Pearl",                                    materials: "Hematite Plating",    length: '18" + 2.5" extender', msrp: 140, status: "available", img: IMG_ELEGANT_AND_GRACE },
-  { id: "ER41845", name: "A Dream Of You",        collection: "June 2026", stone: "Lab-Created Alexandrite",                          materials: "Rose Gold Plating",   length: null,                  msrp: 132, status: "available", img: IMG_DREAM_OF_YOU      },
-  { id: "ER96167", name: "Simply Radiant",        collection: "June 2026", stone: "Lab-Created Ceramic Pearl",                        materials: "Gold Plating",        length: null,                  msrp: 128, status: "available", img: IMG_SIMPLY_RADIANT    },
-  { id: "ER54545", name: "Golden Hive",        collection: "Sterling Club - VERMEIL", stone: "Diamond Cubic Zirconia",                        materials: ".925 Sterling Silver with Gold Plating",        length: null,                  msrp: 310, status: "available", img: IMG_GOLDEN_HIVE    },
+  { id: "NK43201", name: "Velvet Luxury",         collection: "June 2026", stone: "Lab-Created Alexandrite",                          materials: "Rhodium Plating",        length: '18" + 2.5" extender', msrp: 138, status: "claimed", img: IMG_VELVET_LUXURY_HEMATITE     },
+  { id: "NK43201", name: "Velvet Luxury",         collection: "June 2026", stone: "Lab-Created Alexandrite",                          materials: "Hematite Plating",        length: '18" + 2.5" extender', msrp: 138, status: "claimed", img: IMG_VELVET_LUXURY_HEMATITE     },
+  { id: "NK72620", name: "She's Elegant & Grace", collection: "June 2026", stone: "Ceramic Pearl",                                    materials: "Hematite Plating",    length: '18" + 2.5" extender', msrp: 140, status: "claimed", img: IMG_ELEGANT_AND_GRACE },
+  { id: "ER41845", name: "A Dream Of You",        collection: "June 2026", stone: "Lab-Created Alexandrite",                          materials: "Rose Gold Plating",   length: null,                  msrp: 132, status: "claimed", img: IMG_DREAM_OF_YOU      },
+  { id: "ER96167", name: "Simply Radiant",        collection: "June 2026", stone: "Lab-Created Ceramic Pearl",                        materials: "Gold Plating",        length: null,                  msrp: 128, status: "claimed", img: IMG_SIMPLY_RADIANT    },
+  { id: "ER54545", name: "Golden Hive",        collection: "Sterling Club - VERMEIL", stone: "Diamond Cubic Zirconia",                        materials: ".925 Sterling Silver with Gold Plating",        length: null,                  msrp: 310, status: "claimed", img: IMG_GOLDEN_HIVE    },
 ];
 
 const RING_TRAYS = [
   {
     id: "tray-1",
-    label: "Ring Dancers · Tray 1",
-    caption: "Sizes 5 through 11 · rows 1 through 9",
-    thumb: "/images/dance-board/ring-tray-1.jpg",
-    full:  "/images/dance-board/ring-tray-1-large.jpg",
+    label: "Ring Dancers · Tray 1 · *Updated 6/4/2026",
+    caption: "Sizes Kids through 11 · rows 1 through 9",
+    thumb: "/images/dance-board/ring-tray-2.jpg",
+    full:  "/images/dance-board/ring-tray-2-large.jpg",
   },
   // Drop in more trays here as you photograph them — each one renders automatically.
 ];
