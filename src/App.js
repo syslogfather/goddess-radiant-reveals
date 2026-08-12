@@ -143,8 +143,8 @@ function Hero() {
     <FadeIn delay={.58}><div style={{ display: "flex", flexWrap: "wrap", gap: 14, justifyContent: "center" }}>
       <Btn primary href={LINKS.shop}>✦ &nbsp;Order Here</Btn>
     </div></FadeIn>
-    <FadeIn delay={.7}><div style={{ marginTop: 48, display: "flex", gap: 24, flexWrap: "wrap", justifyContent: "center", fontFamily: "'Jost',sans-serif", fontSize: 16, fontWeight: 600, color: C.text2, letterSpacing: .5 }}>
-      {[["💎", "1 Diamond Revealed"], ["🦄", "17 Unicorns Revealed"], ["⭐", "Be Part of the Journey"]].map(([i, t]) => <span key={t} style={{ display: "flex", alignItems: "center", gap: 6 }}><span style={{ fontSize: 14 }}>{i}</span>{t}</span>)}
+    <FadeIn delay={.7}><div style={{ marginTop: 48, display: "flex", gap: 24, flexWrap: "wrap", justifyContent: "center", fontFamily: "'Jost',sans-serif", fontSize: 22, fontWeight: 600, color: C.text2, letterSpacing: .5 }}>
+      {[["💎", "2 Diamonds Revealed"], ["🦄", "29 Unicorns Revealed"], ["⭐", "Be Part of the Journey"]].map(([i, t]) => <span key={t} style={{ display: "flex", alignItems: "center", gap: 6 }}><span style={{ fontSize: 14 }}>{i}</span>{t}</span>)}
     </div></FadeIn>
     <div style={{ position: "absolute", bottom: 28, left: "50%", transform: "translateX(-50%)", animation: "scrollPulse 2.8s ease-in-out infinite", fontFamily: "'Jost',sans-serif", fontSize: 10, letterSpacing: 4, textTransform: "uppercase", color: C.text3 }}>scroll</div>
   </section>;
