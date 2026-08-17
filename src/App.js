@@ -104,7 +104,7 @@ function Nav({ onMenu }) {
 }
 function Menu({ open, onClose }) {
   if (!open) return null;
-  const links = [["Home", "#top"], ["Loveaway Board", "#loveaway-board"], ["Virtual Dance Board", "#dance-board"], ["Live Reveals", "#live"], ["The Goddess Experience", "#how"], ["Your Radiant Community", "#community"], ["Contact", "#contact"], ["Privacy", "#privacy"]];
+  const links = [["Home", "#top"], ["Virtual Dance Board", "#dance-board"], ["Loveaway Board", "#loveaway-board"], ["Live Reveals", "#live"], ["The Goddess Experience", "#how"], ["Your Radiant Community", "#community"], ["Contact", "#contact"], ["Privacy", "#privacy"]];
   return <div style={{ position: "fixed", inset: 0, zIndex: 200, background: `${C.bg}f5`, backdropFilter: "blur(24px)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 2 }}>
     <button onClick={onClose} style={{ position: "absolute", top: 16, right: 20, background: "none", border: "none", color: C.roseLight, fontSize: 28, cursor: "pointer" }}>✕</button>
     {links.map(([l, h]) => <a key={l} href={h} onClick={(e) => { if (h.startsWith("#")) { e.preventDefault(); onClose(); const el = document.querySelector(h); if (el) el.scrollIntoView({ behavior: "smooth" }); } else { onClose(); }}} style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 23, fontStyle: "italic", fontWeight: 500, color: C.text, textDecoration: "none", padding: "9px 32px", letterSpacing: 1 }}>{l}</a>)}
@@ -148,6 +148,288 @@ function Hero() {
     </div></FadeIn>
     <div style={{ position: "absolute", bottom: 28, left: "50%", transform: "translateX(-50%)", animation: "scrollPulse 2.8s ease-in-out infinite", fontFamily: "'Jost',sans-serif", fontSize: 10, letterSpacing: 4, textTransform: "uppercase", color: C.text3 }}>scroll</div>
   </section>;
+}
+
+/* ═══════════════════════════════════════════════════
+   DANCE BOARD — featured pieces + ring tray browser
+   ═══════════════════════════════════════════════════ */
+
+const IMG_SPARKLING_HEART_KEY     = "/images/dance-board/sparkling-heart-key.png";
+const IMG_MIDNIGHT_TEARDROP     = "/images/dance-board/midnight-teardrop.png";
+const IMG_VELVET_LUXURY_HEMATITE     = "/images/dance-board/velvet-luxury-hematite.png";
+const IMG_DREAM_OF_YOU      = "/images/dance-board/a-dream-of-you.jpg";
+const IMG_ELEGANT_AND_GRACE = "/images/dance-board/shes-elegant-and-grace.jpg";
+const IMG_PURE_DRAMA        = "/images/dance-board/shes-pure-drama.jpg";
+const IMG_SERENA_RING       = "/images/dance-board/the-serena-ring.jpg";
+const IMG_DARLING_BE_SHARP  = "/images/dance-board/darling-be-sharp.jpg";
+const IMG_SIMPLY_RADIANT    = "/images/dance-board/SimplyRadiantEarrings.png";
+const IMG_GOLDEN_HIVE    = "/images/dance-board/golden-hive.png";
+
+const DANCE_PIECES = [
+  { id: "RG19611 - SIZE 8", name: "Sparkling Heart Key",     collection: "June 2026", stone: "Diamond Cubic Zirconia",   materials: ".925 Sterling Silver with Gold Plating",   length: null,                  msrp: 260, status: "claimed", img: IMG_SPARKLING_HEART_KEY  },
+  { id: "RG76580 - SIZE 7", name: "Midnight Teardrop",     collection: "June 2026", stone: "Lab-Created Alexandrite",   materials: "Hematite Plating",   length: null,                  msrp: 128, status: "claimed", img: IMG_MIDNIGHT_TEARDROP  },
+  { id: "RG92496 - SIZE 5", name: "Darling, Be Sharp",     collection: "June 2026", stone: "Lab-Created Sapphire fused with Genuine Quartz",   materials: "Rose Gold Plating",   length: null,                  msrp: 158, status: "claimed", img: IMG_DARLING_BE_SHARP  },
+  { id: "RG16989 - SIZE 7", name: "She's Pure Drama",      collection: "June 2026", stone: "Lab-Created Alexandrite",                          materials: "Rhodium Plating",     length: null,                  msrp: 140, status: "claimed", img: IMG_PURE_DRAMA        },
+  { id: "RG61734", name: "The Serena Ring",       collection: "June 2026", stone: "Lab-Created Alexandrite",                          materials: "Rose Gold Plating",   length: null,                  msrp: 138, status: "claimed", img: IMG_SERENA_RING       },
+  { id: "NK43201", name: "Velvet Luxury",         collection: "June 2026", stone: "Lab-Created Alexandrite",                          materials: "Rhodium Plating",        length: '18" + 2.5" extender', msrp: 138, status: "claimed", img: IMG_VELVET_LUXURY_HEMATITE     },
+  { id: "NK43201", name: "Velvet Luxury",         collection: "June 2026", stone: "Lab-Created Alexandrite",                          materials: "Hematite Plating",        length: '18" + 2.5" extender', msrp: 138, status: "claimed", img: IMG_VELVET_LUXURY_HEMATITE     },
+  { id: "NK72620", name: "She's Elegant & Grace", collection: "June 2026", stone: "Ceramic Pearl",                                    materials: "Hematite Plating",    length: '18" + 2.5" extender', msrp: 140, status: "claimed", img: IMG_ELEGANT_AND_GRACE },
+  { id: "ER41845", name: "A Dream Of You",        collection: "June 2026", stone: "Lab-Created Alexandrite",                          materials: "Rose Gold Plating",   length: null,                  msrp: 132, status: "claimed", img: IMG_DREAM_OF_YOU      },
+  { id: "ER96167", name: "Simply Radiant",        collection: "June 2026", stone: "Lab-Created Ceramic Pearl",                        materials: "Gold Plating",        length: null,                  msrp: 128, status: "claimed", img: IMG_SIMPLY_RADIANT    },
+  { id: "ER54545", name: "Golden Hive",        collection: "Sterling Club - VERMEIL", stone: "Diamond Cubic Zirconia",                        materials: ".925 Sterling Silver with Gold Plating",        length: null,                  msrp: 310, status: "claimed", img: IMG_GOLDEN_HIVE    },
+];
+
+const RING_TRAYS = [
+  {
+    id: "tray-2",
+    label: "Ring Dancers · Tray 1 · Vermeil",
+    caption: "Sizes 5 through 9 · Vermeil collection",
+    thumb: "/images/dance-board/ring-tray-3.jpg",
+    full:  "/images/dance-board/ring-tray-3-large.jpg",
+  },
+  {
+    id: "tray-3",
+    label: "Ring Dancers · Tray 2",
+    caption: "Sizes Kids (K) through 6C",
+    thumb: "/images/dance-board/ring-tray-4.jpg",
+    full:  "/images/dance-board/ring-tray-4-large.jpg",
+  },
+  {
+    id: "tray-4",
+    label: "Ring Dancers · Tray 3",
+    caption: "Sizes 7A through 8E",
+    thumb: "/images/dance-board/ring-tray-5.jpg",
+    full:  "/images/dance-board/ring-tray-5-large.jpg",
+  },
+  {
+    id: "tray-5",
+    label: "Ring Dancers · Tray 4",
+    caption: "Sizes 9A through 11A",
+    thumb: "/images/dance-board/ring-tray-6.jpg",
+    full:  "/images/dance-board/ring-tray-6-large.jpg",
+  },
+  // Drop in more trays here as you photograph them — each one renders automatically.
+];
+
+function DanceBoard() {
+  const [selected, setSelected] = useState(null);
+  const [zoomTray, setZoomTray] = useState(null);
+  const [zoomed, setZoomed] = useState(false);
+
+  // Lightbox: close on ESC, lock body scroll while open
+  useEffect(() => {
+    if (zoomTray === null) return;
+    const onKey = (e) => { if (e.key === "Escape") setZoomTray(null); };
+    window.addEventListener("keydown", onKey);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prev;
+    };
+  }, [zoomTray]);
+
+  useEffect(() => { if (zoomTray !== null) setZoomed(false); }, [zoomTray]);
+
+  return (
+    <section id="dance-board" style={{ padding: "48px 24px 64px", position: "relative", scrollMarginTop: 80 }}>
+      <Glow top="35%" left="20%" color={C.gold} size={340} />
+      <Glow top="65%" left="80%" color={C.plum} size={280} />
+      <div style={{ maxWidth: 760, margin: "0 auto", textAlign: "center" }}>
+        <FadeIn>
+          <Label>Dance & Treasure</Label>
+          <Title>The Radiant Virtual Dance Board</Title>
+          <Sub wide>Take a peek at the radiant dancers ready to twirl their way to a new goddess. Browse every ring on the tray below, or tap a featured dancer to see the details. Many more pieces appear on my Lives.</Sub>
+        </FadeIn>
+
+        {/* ───── RING TRAY (browse everything) ───── */}
+        <FadeIn delay={.1}>
+          <div style={{ marginTop: 32 }}>
+            <div style={{ fontFamily: "'Jost',sans-serif", fontSize: 13, fontWeight: 700, letterSpacing: 4, textTransform: "uppercase", color: C.rose, marginBottom: 14, textAlign: "left" }}>The Full Ring Tray</div>
+            {RING_TRAYS.map((tray, i) => (
+              <Card key={tray.id} style={{ padding: 14, marginBottom: 14 }}>
+                <ShimmerBar />
+                <button
+                  onClick={() => setZoomTray(i)}
+                  aria-label={`Open ${tray.label} fullscreen`}
+                  style={{
+                    width: "100%", padding: 0, border: "none", background: "transparent",
+                    cursor: "zoom-in", borderRadius: 14, overflow: "hidden", display: "block",
+                    position: "relative",
+                  }}
+                >
+                  <img
+                    src={tray.thumb}
+                    alt={tray.label}
+                    loading="lazy"
+                    style={{ width: "100%", height: "auto", display: "block", borderRadius: 14 }}
+                  />
+                  <div style={{
+                    position: "absolute", top: 12, right: 12,
+                    background: "rgba(26,18,16,0.55)", backdropFilter: "blur(8px)",
+                    color: "#fff", padding: "8px 14px", borderRadius: 50,
+                    fontFamily: "'Jost',sans-serif", fontSize: 12, fontWeight: 600,
+                    letterSpacing: 1.5, textTransform: "uppercase",
+                    display: "flex", alignItems: "center", gap: 6,
+                  }}>
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8" /><path d="m21 21-4.3-4.3" /><line x1="11" y1="8" x2="11" y2="14" /><line x1="8" y1="11" x2="14" y2="11" /></svg>
+                    Tap to zoom
+                  </div>
+                </button>
+                <div style={{ padding: "14px 8px 6px", textAlign: "left" }}>
+                  <div style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 20, fontWeight: 700, fontStyle: "italic", color: C.text, lineHeight: 1.2 }}>{tray.label}</div>
+                  <div style={{ fontFamily: "'Jost',sans-serif", fontSize: 13, color: C.text3, marginTop: 3, fontWeight: 400 }}>{tray.caption}</div>
+                </div>
+              </Card>
+            ))}
+          </div>
+        </FadeIn>
+
+        {/* ───── FEATURED DANCERS GRID ───── */}
+        <FadeIn delay={.15}>
+          <div style={{ marginTop: 32 }}>
+            <div style={{ fontFamily: "'Jost',sans-serif", fontSize: 13, fontWeight: 700, letterSpacing: 4, textTransform: "uppercase", color: C.rose, marginBottom: 14, textAlign: "left" }}>Featured Dancers</div>
+            <Card style={{ padding: "28px 20px" }}>
+              <ShimmerBar />
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(6,1fr)", gap: 8 }}>
+                {DANCE_PIECES.map((p, i) => {
+                  const isClaimed = p.status === "claimed";
+                  const isSelected = selected === i;
+                  return (
+                    <button
+                      key={i}
+                      onClick={() => !isClaimed && setSelected(isSelected ? null : i)}
+                      disabled={isClaimed}
+                      style={{
+                        aspectRatio: "1", borderRadius: 12, padding: 0, position: "relative", overflow: "hidden",
+                        background: isClaimed ? "#f3e8e3" : "#fff",
+                        border: `1.5px solid ${isSelected ? C.rose : isClaimed ? C.rose + "12" : C.rose + "22"}`,
+                        cursor: isClaimed ? "not-allowed" : "pointer",
+                        transition: "all .35s cubic-bezier(.16,1,.3,1)",
+                        boxShadow: isSelected ? `0 6px 22px ${C.rose}33` : "0 1px 4px rgba(0,0,0,0.04)",
+                        transform: isSelected ? "translateY(-2px)" : "none",
+                        filter: isClaimed ? "grayscale(0.85) opacity(0.45)" : "none",
+                      }}
+                      aria-label={`${p.name} ${p.id} - ${p.status}`}
+                    >
+                      <img src={p.img} alt={p.name} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+                      {isClaimed && (
+                        <div style={{
+                          position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center",
+                          fontFamily: "'Cormorant Garamond',serif", fontStyle: "italic", fontWeight: 700,
+                          color: C.roseDark, fontSize: 11, letterSpacing: 1.5, textTransform: "uppercase",
+                          background: `${C.bg}99`,
+                        }}>Claimed</div>
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
+            </Card>
+          </div>
+        </FadeIn>
+
+        {selected !== null && (
+          <FadeIn delay={.05}>
+            <Card style={{ padding: "24px 22px", marginTop: 16, textAlign: "left", display: "flex", gap: 18, alignItems: "center", flexWrap: "wrap", justifyContent: "center" }}>
+              <img src={DANCE_PIECES[selected].img} alt={DANCE_PIECES[selected].name} style={{ width: 180, height: 180, borderRadius: 14, objectFit: "cover", flexShrink: 0, border: `1px solid ${C.rose}22` }} />
+              <div style={{ flex: "1 1 240px", minWidth: 0 }}>
+                <div style={{ fontFamily: "'Jost',sans-serif", fontSize: 12, fontWeight: 600, letterSpacing: 3, textTransform: "uppercase", color: C.rose, marginBottom: 4 }}>{DANCE_PIECES[selected].id}</div>
+                <div style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 24, fontWeight: 700, fontStyle: "italic", color: C.text, lineHeight: 1.1, marginBottom: 8 }}>{DANCE_PIECES[selected].name}</div>
+                <div style={{ fontFamily: "'Jost',sans-serif", fontSize: 14, color: C.text2, lineHeight: 1.65, fontWeight: 400 }}>
+                  Collection: <strong style={{ color: C.text }}>{DANCE_PIECES[selected].collection}</strong><br />
+                  Main stone: <strong style={{ color: C.text }}>{DANCE_PIECES[selected].stone}</strong><br />
+                  Materials: {DANCE_PIECES[selected].materials}{DANCE_PIECES[selected].length ? ` · ${DANCE_PIECES[selected].length}` : ""}<br />
+                  MSRP: <strong style={{ color: C.text }}>${DANCE_PIECES[selected].msrp}</strong>
+                </div>
+              </div>
+              <Btn primary small href={LINKS.tiktok}>Ask About This Trade</Btn>
+            </Card>
+          </FadeIn>
+        )}
+
+        <FadeIn delay={.25}>
+          <p style={{ fontFamily: "'Jost',sans-serif", fontSize: 13, color: C.text3, marginTop: 20, fontWeight: 300, lineHeight: 1.65 }}>
+            Tap a featured dancer for details. Claimed pieces are no longer available — new dancers join the virtual dance floor as soon as possible but please be patient.
+          </p>
+        </FadeIn>
+
+        <FadeIn delay={.3}>
+          <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap", marginTop: 20 }}>
+            <Btn primary href={LINKS.tiktok}>Catch Us on TikTok LIVE</Btn>
+            <Btn href={LINKS.parties}>See Upcoming Parties</Btn>
+          </div>
+        </FadeIn>
+      </div>
+
+      {/* ───── LIGHTBOX ───── */}
+      {zoomTray !== null && (
+        <div
+          onClick={() => setZoomTray(null)}
+          role="dialog"
+          aria-modal="true"
+          aria-label={`${RING_TRAYS[zoomTray].label} fullscreen view`}
+          style={{
+            position: "fixed", inset: 0, zIndex: 1000,
+            background: "rgba(15,8,6,0.92)",
+            backdropFilter: "blur(8px)",
+            display: "flex", alignItems: "center", justifyContent: "center",
+            padding: 12, animation: "fadeIn .25s ease-out",
+          }}
+        >
+          <button
+            onClick={(e) => { e.stopPropagation(); setZoomTray(null); }}
+            aria-label="Close fullscreen view"
+            style={{
+              position: "absolute", top: 16, right: 16,
+              width: 44, height: 44, borderRadius: "50%",
+              background: "rgba(255,255,255,0.12)", border: "1px solid rgba(255,255,255,0.18)",
+              color: "#fff", fontSize: 22, lineHeight: 1, cursor: "pointer",
+              display: "flex", alignItems: "center", justifyContent: "center",
+              fontFamily: "'Jost',sans-serif", zIndex: 2,
+            }}
+          >✕</button>
+
+          <div
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              width: "100%", height: "100%",
+              overflow: "auto", WebkitOverflowScrolling: "touch",
+              display: "flex", alignItems: "center", justifyContent: "center",
+            }}
+          >
+            <img
+              src={RING_TRAYS[zoomTray].full}
+              alt={RING_TRAYS[zoomTray].label}
+              onClick={(e) => { e.stopPropagation(); setZoomed(z => !z); }}
+              style={{
+                display: "block",
+                maxWidth: zoomed ? "none" : "98vw",
+                maxHeight: zoomed ? "none" : "92vh",
+                width: zoomed ? "200%" : "auto",
+                height: "auto",
+                cursor: zoomed ? "zoom-out" : "zoom-in",
+                transition: "max-width .3s ease, max-height .3s ease, width .3s ease",
+                borderRadius: 8,
+                boxShadow: "0 20px 60px rgba(0,0,0,0.5)",
+              }}
+            />
+          </div>
+
+          <div style={{
+            position: "absolute", bottom: 18, left: "50%", transform: "translateX(-50%)",
+            background: "rgba(0,0,0,0.4)", backdropFilter: "blur(8px)",
+            color: "#fff", padding: "8px 18px", borderRadius: 50,
+            fontFamily: "'Jost',sans-serif", fontSize: 12, fontWeight: 500,
+            letterSpacing: 1, textAlign: "center", opacity: .85,
+            pointerEvents: "none",
+          }}>
+            Pinch or tap the image to zoom · Tap outside or press Esc to close
+          </div>
+        </div>
+      )}
+    </section>
+  );
 }
 
 /* ═══════════════════════════════════════════════════
@@ -525,267 +807,6 @@ function Loveaways() {
             pointerEvents: "none",
           }}>
             Pinch to zoom · Tap outside or press Esc to close
-          </div>
-        </div>
-      )}
-    </section>
-  );
-}
-
-/* ═══════════════════════════════════════════════════
-   DANCE BOARD — featured pieces + ring tray browser
-   ═══════════════════════════════════════════════════ */
-
-const IMG_SPARKLING_HEART_KEY     = "/images/dance-board/sparkling-heart-key.png";
-const IMG_MIDNIGHT_TEARDROP     = "/images/dance-board/midnight-teardrop.png";
-const IMG_VELVET_LUXURY_HEMATITE     = "/images/dance-board/velvet-luxury-hematite.png";
-const IMG_DREAM_OF_YOU      = "/images/dance-board/a-dream-of-you.jpg";
-const IMG_ELEGANT_AND_GRACE = "/images/dance-board/shes-elegant-and-grace.jpg";
-const IMG_PURE_DRAMA        = "/images/dance-board/shes-pure-drama.jpg";
-const IMG_SERENA_RING       = "/images/dance-board/the-serena-ring.jpg";
-const IMG_DARLING_BE_SHARP  = "/images/dance-board/darling-be-sharp.jpg";
-const IMG_SIMPLY_RADIANT    = "/images/dance-board/SimplyRadiantEarrings.png";
-const IMG_GOLDEN_HIVE    = "/images/dance-board/golden-hive.png";
-
-const DANCE_PIECES = [
-  { id: "RG19611 - SIZE 8", name: "Sparkling Heart Key",     collection: "June 2026", stone: "Diamond Cubic Zirconia",   materials: ".925 Sterling Silver with Gold Plating",   length: null,                  msrp: 260, status: "claimed", img: IMG_SPARKLING_HEART_KEY  },
-  { id: "RG76580 - SIZE 7", name: "Midnight Teardrop",     collection: "June 2026", stone: "Lab-Created Alexandrite",   materials: "Hematite Plating",   length: null,                  msrp: 128, status: "claimed", img: IMG_MIDNIGHT_TEARDROP  },
-  { id: "RG92496 - SIZE 5", name: "Darling, Be Sharp",     collection: "June 2026", stone: "Lab-Created Sapphire fused with Genuine Quartz",   materials: "Rose Gold Plating",   length: null,                  msrp: 158, status: "claimed", img: IMG_DARLING_BE_SHARP  },
-  { id: "RG16989 - SIZE 7", name: "She's Pure Drama",      collection: "June 2026", stone: "Lab-Created Alexandrite",                          materials: "Rhodium Plating",     length: null,                  msrp: 140, status: "claimed", img: IMG_PURE_DRAMA        },
-  { id: "RG61734", name: "The Serena Ring",       collection: "June 2026", stone: "Lab-Created Alexandrite",                          materials: "Rose Gold Plating",   length: null,                  msrp: 138, status: "claimed", img: IMG_SERENA_RING       },
-  { id: "NK43201", name: "Velvet Luxury",         collection: "June 2026", stone: "Lab-Created Alexandrite",                          materials: "Rhodium Plating",        length: '18" + 2.5" extender', msrp: 138, status: "claimed", img: IMG_VELVET_LUXURY_HEMATITE     },
-  { id: "NK43201", name: "Velvet Luxury",         collection: "June 2026", stone: "Lab-Created Alexandrite",                          materials: "Hematite Plating",        length: '18" + 2.5" extender', msrp: 138, status: "claimed", img: IMG_VELVET_LUXURY_HEMATITE     },
-  { id: "NK72620", name: "She's Elegant & Grace", collection: "June 2026", stone: "Ceramic Pearl",                                    materials: "Hematite Plating",    length: '18" + 2.5" extender', msrp: 140, status: "claimed", img: IMG_ELEGANT_AND_GRACE },
-  { id: "ER41845", name: "A Dream Of You",        collection: "June 2026", stone: "Lab-Created Alexandrite",                          materials: "Rose Gold Plating",   length: null,                  msrp: 132, status: "claimed", img: IMG_DREAM_OF_YOU      },
-  { id: "ER96167", name: "Simply Radiant",        collection: "June 2026", stone: "Lab-Created Ceramic Pearl",                        materials: "Gold Plating",        length: null,                  msrp: 128, status: "claimed", img: IMG_SIMPLY_RADIANT    },
-  { id: "ER54545", name: "Golden Hive",        collection: "Sterling Club - VERMEIL", stone: "Diamond Cubic Zirconia",                        materials: ".925 Sterling Silver with Gold Plating",        length: null,                  msrp: 310, status: "claimed", img: IMG_GOLDEN_HIVE    },
-];
-
-const RING_TRAYS = [
-  {
-    id: "tray-1",
-    label: "Ring Dancers · Tray 1 · *Updated 6/4/2026",
-    caption: "Sizes Kids through 11 · rows 1 through 9",
-    thumb: "/images/dance-board/ring-tray-2.jpg",
-    full:  "/images/dance-board/ring-tray-2-large.jpg",
-  },
-  // Drop in more trays here as you photograph them — each one renders automatically.
-];
-
-function DanceBoard() {
-  const [selected, setSelected] = useState(null);
-  const [zoomTray, setZoomTray] = useState(null);
-  const [zoomed, setZoomed] = useState(false);
-
-  // Lightbox: close on ESC, lock body scroll while open
-  useEffect(() => {
-    if (zoomTray === null) return;
-    const onKey = (e) => { if (e.key === "Escape") setZoomTray(null); };
-    window.addEventListener("keydown", onKey);
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      window.removeEventListener("keydown", onKey);
-      document.body.style.overflow = prev;
-    };
-  }, [zoomTray]);
-
-  useEffect(() => { if (zoomTray !== null) setZoomed(false); }, [zoomTray]);
-
-  return (
-    <section id="dance-board" style={{ padding: "48px 24px 64px", position: "relative", scrollMarginTop: 80 }}>
-      <Glow top="35%" left="20%" color={C.gold} size={340} />
-      <Glow top="65%" left="80%" color={C.plum} size={280} />
-      <div style={{ maxWidth: 760, margin: "0 auto", textAlign: "center" }}>
-        <FadeIn>
-          <Label>Dance & Treasure</Label>
-          <Title>The Radiant Virtual Dance Board</Title>
-          <Sub wide>Take a peek at the radiant dancers ready to twirl their way to a new goddess. Browse every ring on the tray below, or tap a featured dancer to see the details. Many more pieces appear on my Lives.</Sub>
-        </FadeIn>
-
-        {/* ───── RING TRAY (browse everything) ───── */}
-        <FadeIn delay={.1}>
-          <div style={{ marginTop: 32 }}>
-            <div style={{ fontFamily: "'Jost',sans-serif", fontSize: 13, fontWeight: 700, letterSpacing: 4, textTransform: "uppercase", color: C.rose, marginBottom: 14, textAlign: "left" }}>The Full Ring Tray</div>
-            {RING_TRAYS.map((tray, i) => (
-              <Card key={tray.id} style={{ padding: 14, marginBottom: 14 }}>
-                <ShimmerBar />
-                <button
-                  onClick={() => setZoomTray(i)}
-                  aria-label={`Open ${tray.label} fullscreen`}
-                  style={{
-                    width: "100%", padding: 0, border: "none", background: "transparent",
-                    cursor: "zoom-in", borderRadius: 14, overflow: "hidden", display: "block",
-                    position: "relative",
-                  }}
-                >
-                  <img
-                    src={tray.thumb}
-                    alt={tray.label}
-                    loading="lazy"
-                    style={{ width: "100%", height: "auto", display: "block", borderRadius: 14 }}
-                  />
-                  <div style={{
-                    position: "absolute", top: 12, right: 12,
-                    background: "rgba(26,18,16,0.55)", backdropFilter: "blur(8px)",
-                    color: "#fff", padding: "8px 14px", borderRadius: 50,
-                    fontFamily: "'Jost',sans-serif", fontSize: 12, fontWeight: 600,
-                    letterSpacing: 1.5, textTransform: "uppercase",
-                    display: "flex", alignItems: "center", gap: 6,
-                  }}>
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8" /><path d="m21 21-4.3-4.3" /><line x1="11" y1="8" x2="11" y2="14" /><line x1="8" y1="11" x2="14" y2="11" /></svg>
-                    Tap to zoom
-                  </div>
-                </button>
-                <div style={{ padding: "14px 8px 6px", textAlign: "left" }}>
-                  <div style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 20, fontWeight: 700, fontStyle: "italic", color: C.text, lineHeight: 1.2 }}>{tray.label}</div>
-                  <div style={{ fontFamily: "'Jost',sans-serif", fontSize: 13, color: C.text3, marginTop: 3, fontWeight: 400 }}>{tray.caption}</div>
-                </div>
-              </Card>
-            ))}
-          </div>
-        </FadeIn>
-
-        {/* ───── FEATURED DANCERS GRID ───── */}
-        <FadeIn delay={.15}>
-          <div style={{ marginTop: 32 }}>
-            <div style={{ fontFamily: "'Jost',sans-serif", fontSize: 13, fontWeight: 700, letterSpacing: 4, textTransform: "uppercase", color: C.rose, marginBottom: 14, textAlign: "left" }}>Featured Dancers</div>
-            <Card style={{ padding: "28px 20px" }}>
-              <ShimmerBar />
-              <div style={{ display: "grid", gridTemplateColumns: "repeat(6,1fr)", gap: 8 }}>
-                {DANCE_PIECES.map((p, i) => {
-                  const isClaimed = p.status === "claimed";
-                  const isSelected = selected === i;
-                  return (
-                    <button
-                      key={i}
-                      onClick={() => !isClaimed && setSelected(isSelected ? null : i)}
-                      disabled={isClaimed}
-                      style={{
-                        aspectRatio: "1", borderRadius: 12, padding: 0, position: "relative", overflow: "hidden",
-                        background: isClaimed ? "#f3e8e3" : "#fff",
-                        border: `1.5px solid ${isSelected ? C.rose : isClaimed ? C.rose + "12" : C.rose + "22"}`,
-                        cursor: isClaimed ? "not-allowed" : "pointer",
-                        transition: "all .35s cubic-bezier(.16,1,.3,1)",
-                        boxShadow: isSelected ? `0 6px 22px ${C.rose}33` : "0 1px 4px rgba(0,0,0,0.04)",
-                        transform: isSelected ? "translateY(-2px)" : "none",
-                        filter: isClaimed ? "grayscale(0.85) opacity(0.45)" : "none",
-                      }}
-                      aria-label={`${p.name} ${p.id} - ${p.status}`}
-                    >
-                      <img src={p.img} alt={p.name} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
-                      {isClaimed && (
-                        <div style={{
-                          position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center",
-                          fontFamily: "'Cormorant Garamond',serif", fontStyle: "italic", fontWeight: 700,
-                          color: C.roseDark, fontSize: 11, letterSpacing: 1.5, textTransform: "uppercase",
-                          background: `${C.bg}99`,
-                        }}>Claimed</div>
-                      )}
-                    </button>
-                  );
-                })}
-              </div>
-            </Card>
-          </div>
-        </FadeIn>
-
-        {selected !== null && (
-          <FadeIn delay={.05}>
-            <Card style={{ padding: "24px 22px", marginTop: 16, textAlign: "left", display: "flex", gap: 18, alignItems: "center", flexWrap: "wrap", justifyContent: "center" }}>
-              <img src={DANCE_PIECES[selected].img} alt={DANCE_PIECES[selected].name} style={{ width: 180, height: 180, borderRadius: 14, objectFit: "cover", flexShrink: 0, border: `1px solid ${C.rose}22` }} />
-              <div style={{ flex: "1 1 240px", minWidth: 0 }}>
-                <div style={{ fontFamily: "'Jost',sans-serif", fontSize: 12, fontWeight: 600, letterSpacing: 3, textTransform: "uppercase", color: C.rose, marginBottom: 4 }}>{DANCE_PIECES[selected].id}</div>
-                <div style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: 24, fontWeight: 700, fontStyle: "italic", color: C.text, lineHeight: 1.1, marginBottom: 8 }}>{DANCE_PIECES[selected].name}</div>
-                <div style={{ fontFamily: "'Jost',sans-serif", fontSize: 14, color: C.text2, lineHeight: 1.65, fontWeight: 400 }}>
-                  Collection: <strong style={{ color: C.text }}>{DANCE_PIECES[selected].collection}</strong><br />
-                  Main stone: <strong style={{ color: C.text }}>{DANCE_PIECES[selected].stone}</strong><br />
-                  Materials: {DANCE_PIECES[selected].materials}{DANCE_PIECES[selected].length ? ` · ${DANCE_PIECES[selected].length}` : ""}<br />
-                  MSRP: <strong style={{ color: C.text }}>${DANCE_PIECES[selected].msrp}</strong>
-                </div>
-              </div>
-              <Btn primary small href={LINKS.tiktok}>Ask About This Trade</Btn>
-            </Card>
-          </FadeIn>
-        )}
-
-        <FadeIn delay={.25}>
-          <p style={{ fontFamily: "'Jost',sans-serif", fontSize: 13, color: C.text3, marginTop: 20, fontWeight: 300, lineHeight: 1.65 }}>
-            Tap a featured dancer for details. Claimed pieces are no longer available — new dancers join the virtual dance floor as soon as possible but please be patient.
-          </p>
-        </FadeIn>
-
-        <FadeIn delay={.3}>
-          <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap", marginTop: 20 }}>
-            <Btn primary href={LINKS.tiktok}>Catch Us on TikTok LIVE</Btn>
-            <Btn href={LINKS.parties}>See Upcoming Parties</Btn>
-          </div>
-        </FadeIn>
-      </div>
-
-      {/* ───── LIGHTBOX ───── */}
-      {zoomTray !== null && (
-        <div
-          onClick={() => setZoomTray(null)}
-          role="dialog"
-          aria-modal="true"
-          aria-label={`${RING_TRAYS[zoomTray].label} fullscreen view`}
-          style={{
-            position: "fixed", inset: 0, zIndex: 1000,
-            background: "rgba(15,8,6,0.92)",
-            backdropFilter: "blur(8px)",
-            display: "flex", alignItems: "center", justifyContent: "center",
-            padding: 12, animation: "fadeIn .25s ease-out",
-          }}
-        >
-          <button
-            onClick={(e) => { e.stopPropagation(); setZoomTray(null); }}
-            aria-label="Close fullscreen view"
-            style={{
-              position: "absolute", top: 16, right: 16,
-              width: 44, height: 44, borderRadius: "50%",
-              background: "rgba(255,255,255,0.12)", border: "1px solid rgba(255,255,255,0.18)",
-              color: "#fff", fontSize: 22, lineHeight: 1, cursor: "pointer",
-              display: "flex", alignItems: "center", justifyContent: "center",
-              fontFamily: "'Jost',sans-serif", zIndex: 2,
-            }}
-          >✕</button>
-
-          <div
-            onClick={(e) => e.stopPropagation()}
-            style={{
-              width: "100%", height: "100%",
-              overflow: "auto", WebkitOverflowScrolling: "touch",
-              display: "flex", alignItems: "center", justifyContent: "center",
-            }}
-          >
-            <img
-              src={RING_TRAYS[zoomTray].full}
-              alt={RING_TRAYS[zoomTray].label}
-              onClick={(e) => { e.stopPropagation(); setZoomed(z => !z); }}
-              style={{
-                display: "block",
-                maxWidth: zoomed ? "none" : "98vw",
-                maxHeight: zoomed ? "none" : "92vh",
-                width: zoomed ? "200%" : "auto",
-                height: "auto",
-                cursor: zoomed ? "zoom-out" : "zoom-in",
-                transition: "max-width .3s ease, max-height .3s ease, width .3s ease",
-                borderRadius: 8,
-                boxShadow: "0 20px 60px rgba(0,0,0,0.5)",
-              }}
-            />
-          </div>
-
-          <div style={{
-            position: "absolute", bottom: 18, left: "50%", transform: "translateX(-50%)",
-            background: "rgba(0,0,0,0.4)", backdropFilter: "blur(8px)",
-            color: "#fff", padding: "8px 18px", borderRadius: 50,
-            fontFamily: "'Jost',sans-serif", fontSize: 12, fontWeight: 500,
-            letterSpacing: 1, textAlign: "center", opacity: .85,
-            pointerEvents: "none",
-          }}>
-            Pinch or tap the image to zoom · Tap outside or press Esc to close
           </div>
         </div>
       )}
